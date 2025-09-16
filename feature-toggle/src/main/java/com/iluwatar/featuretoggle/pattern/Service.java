@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.featuretoggle.pattern;
 
 import com.iluwatar.featuretoggle.user.User;
 
 /**
  * Simple interfaces to allow the calling of the method to generate the welcome message for a given
- * user. While there is a helper method to gather the the status of the feature toggle. In some
- * cases there is no need for the {@link Service#isEnhanced()} in {@link
+ * user. While there is a helper method to gather the status of the feature toggle. In some cases
+ * there is no need for the {@link Service#isEnhanced()} in {@link
  * com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion} where the toggle is
  * determined by the actual {@link User}.
  *
@@ -52,5 +53,4 @@ public interface Service {
    * @return Boolean {@code true} if enhanced.
    */
   boolean isEnhanced();
-
 }

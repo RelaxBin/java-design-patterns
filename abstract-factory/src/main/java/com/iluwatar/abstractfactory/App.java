@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.abstractfactory;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -40,13 +42,10 @@ import lombok.extern.slf4j.Slf4j;
  * both concrete implementations to create a king, a castle, and an army.
  */
 @Slf4j
+@Getter
 public class App implements Runnable {
 
   private final Kingdom kingdom = new Kingdom();
-
-  public Kingdom getKingdom() {
-    return kingdom;
-  }
 
   /**
    * Program entry point.
@@ -75,6 +74,7 @@ public class App implements Runnable {
 
   /**
    * Creates kingdom.
+   *
    * @param kingdomType type of Kingdom
    */
   public void createKingdom(final Kingdom.FactoryMaker.KingdomType kingdomType) {

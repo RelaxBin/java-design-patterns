@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.chain;
 
 import java.util.Objects;
+import lombok.Getter;
 
-/**
- * Request.
- */
+/** Request. */
+@Getter
 public class Request {
 
   /**
@@ -36,9 +37,7 @@ public class Request {
    */
   private final RequestType requestType;
 
-  /**
-   * A description of the request.
-   */
+  /** A description of the request. */
   private final String requestDescription;
 
   /**
@@ -50,7 +49,7 @@ public class Request {
   /**
    * Create a new request of the given type and accompanied description.
    *
-   * @param requestType        The type of request
+   * @param requestType The type of request
    * @param requestDescription The description of the request
    */
   public Request(final RequestType requestType, final String requestDescription) {
@@ -58,44 +57,13 @@ public class Request {
     this.requestDescription = Objects.requireNonNull(requestDescription);
   }
 
-  /**
-   * Get a description of the request.
-   *
-   * @return A human readable description of the request
-   */
-  public String getRequestDescription() {
-    return requestDescription;
-  }
-
-  /**
-   * Get the type of this request, used by each person in the chain of command to see if they should
-   * or can handle this particular request.
-   *
-   * @return The request type
-   */
-  public RequestType getRequestType() {
-    return requestType;
-  }
-
-  /**
-   * Mark the request as handled.
-   */
+  /** Mark the request as handled. */
   public void markHandled() {
     this.handled = true;
-  }
-
-  /**
-   * Indicates if this request is handled or not.
-   *
-   * @return <tt>true</tt> when the request is handled, <tt>false</tt> if not
-   */
-  public boolean isHandled() {
-    return this.handled;
   }
 
   @Override
   public String toString() {
     return getRequestDescription();
   }
-
 }

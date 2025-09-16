@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.prototype;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,21 +35,19 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Date: 12/28/15 - 8:45 PM
+ * PrototypeTest
  *
  * @param <P> Prototype
- * @author Jeroen Meulemeester
  */
-class PrototypeTest<P extends Prototype> {
+class PrototypeTest<P extends Prototype<P>> {
   static Collection<Object[]> dataProvider() {
     return List.of(
-        new Object[]{new OrcBeast("axe"), "Orcish wolf attacks with axe"},
-        new Object[]{new OrcMage("sword"), "Orcish mage attacks with sword"},
-        new Object[]{new OrcWarlord("laser"), "Orcish warlord attacks with laser"},
-        new Object[]{new ElfBeast("cooking"), "Elven eagle helps in cooking"},
-        new Object[]{new ElfMage("cleaning"), "Elven mage helps in cleaning"},
-        new Object[]{new ElfWarlord("protecting"), "Elven warlord helps in protecting"}
-    );
+        new Object[] {new OrcBeast("axe"), "Orcish wolf attacks with axe"},
+        new Object[] {new OrcMage("sword"), "Orcish mage attacks with sword"},
+        new Object[] {new OrcWarlord("laser"), "Orcish warlord attacks with laser"},
+        new Object[] {new ElfBeast("cooking"), "Elven eagle helps in cooking"},
+        new Object[] {new ElfMage("cleaning"), "Elven mage helps in cleaning"},
+        new Object[] {new ElfWarlord("protecting"), "Elven warlord helps in protecting"});
   }
 
   @ParameterizedTest
@@ -62,5 +61,4 @@ class PrototypeTest<P extends Prototype> {
     assertSame(testedPrototype.getClass(), clone.getClass());
     assertEquals(clone, testedPrototype);
   }
-
 }

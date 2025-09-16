@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +25,5 @@
 
 package com.iluwatar.collectionpipeline;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-/**
- * A Car class that has the properties of make, model, year and category.
- */
-@Getter
-@EqualsAndHashCode
-@RequiredArgsConstructor
-public class Car {
-  private final String make;
-  private final String model;
-  private final int year;
-  private final Category category;
-
-}
+/** A Car class that has the properties of make, model, year and category. */
+public record Car(String make, String model, int year, Category category) {}

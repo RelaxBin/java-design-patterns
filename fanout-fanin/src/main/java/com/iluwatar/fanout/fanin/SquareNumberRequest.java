@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.fanout.fanin;
 
 import java.security.SecureRandom;
-
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Squares the number with a little timeout to give impression of long running process that return
+ * Squares the number with a little timeout to give impression of long-running process that return
  * at different times.
  */
 @Slf4j
@@ -39,10 +39,11 @@ public class SquareNumberRequest {
   private final Long number;
 
   /**
-   * Squares the number with a little timeout to give impression of long running process that return
+   * Squares the number with a little timeout to give impression of long-running process that return
    * at different times.
+   *
    * @param consumer callback class that takes the result after the delay.
-   * */
+   */
   public void delayedSquaring(final Consumer consumer) {
 
     var minTimeOut = 5000L;

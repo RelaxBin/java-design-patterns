@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.doublebuffer;
 
 import java.util.List;
@@ -44,19 +45,13 @@ public class App {
    */
   public static void main(String[] args) {
     final var scene = new Scene();
-    var drawPixels1 = List.of(
-        new MutablePair<>(1, 1),
-        new MutablePair<>(5, 6),
-        new MutablePair<>(3, 2)
-    );
+    var drawPixels1 =
+        List.of(new MutablePair<>(1, 1), new MutablePair<>(5, 6), new MutablePair<>(3, 2));
     scene.draw(drawPixels1);
     var buffer1 = scene.getBuffer();
     printBlackPixelCoordinate(buffer1);
 
-    var drawPixels2 = List.of(
-        new MutablePair<>(3, 7),
-        new MutablePair<>(6, 1)
-    );
+    var drawPixels2 = List.of(new MutablePair<>(3, 7), new MutablePair<>(6, 1));
     scene.draw(drawPixels2);
     var buffer2 = scene.getBuffer();
     printBlackPixelCoordinate(buffer2);

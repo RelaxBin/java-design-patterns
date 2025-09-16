@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.leaderelection;
 
-/**
- * MessageManager interface.
- */
+/** MessageManager interface. */
 public interface MessageManager {
 
   /**
@@ -40,7 +39,7 @@ public interface MessageManager {
    * Send election message to other instances.
    *
    * @param currentId Instance ID of which sends this message.
-   * @param content   Election message content.
+   * @param content Election message content.
    * @return {@code true} if the message is accepted by the target instances.
    */
   boolean sendElectionMessage(int currentId, String content);
@@ -49,7 +48,7 @@ public interface MessageManager {
    * Send new leader notification message to other instances.
    *
    * @param currentId Instance ID of which sends this message.
-   * @param leaderId  Leader message content.
+   * @param leaderId Leader message content.
    * @return {@code true} if the message is accepted by the target instances.
    */
   boolean sendLeaderMessage(int currentId, int leaderId);
@@ -60,5 +59,4 @@ public interface MessageManager {
    * @param currentId Instance ID of which sends this message.
    */
   void sendHeartbeatInvokeMessage(int currentId);
-
 }

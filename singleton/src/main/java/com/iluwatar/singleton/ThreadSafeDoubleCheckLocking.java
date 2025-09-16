@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.singleton;
 
 /**
- * <p>Double check locking.</p>
+ * Double check locking.
  *
- * <p>http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html</p>
+ * <p>http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html
  *
- * <p>Broken under Java 1.4.</p>
- *
- * @author mortezaadi@gmail.com
+ * <p>Broken under Java 1.4.
  */
 public final class ThreadSafeDoubleCheckLocking {
-
+  /**
+   * Singleton instance of the class, declared as volatile to ensure atomic access by multiple
+   * threads.
+   */
   private static volatile ThreadSafeDoubleCheckLocking instance;
 
-  /**
-   * private constructor to prevent client from instantiating.
-   */
+  /** private constructor to prevent client from instantiating. */
   private ThreadSafeDoubleCheckLocking() {
     // to prevent instantiating by Reflection call
     if (instance != null) {
@@ -59,7 +59,7 @@ public final class ThreadSafeDoubleCheckLocking {
     // Check if singleton instance is initialized.
     // If it is initialized then we can return the instance.
     if (result == null) {
-      // It is not initialized but we cannot be sure because some other thread might have
+      // It is not initialized, but we cannot be sure because some other thread might have
       // initialized it in the meanwhile.
       // So to make sure we need to lock on an object to get mutual exclusion.
       synchronized (ThreadSafeDoubleCheckLocking.class) {
@@ -69,10 +69,11 @@ public final class ThreadSafeDoubleCheckLocking {
         // just like the previous null check.
         result = instance;
         if (result == null) {
-          // The instance is still not initialized so we can safely
+          // The instance is still not initialized, so we can safely
           // (no other thread can enter this zone)
           // create an instance and make it our singleton instance.
-          instance = result = new ThreadSafeDoubleCheckLocking();
+          result = new ThreadSafeDoubleCheckLocking();
+          instance = result;
         }
       }
     }

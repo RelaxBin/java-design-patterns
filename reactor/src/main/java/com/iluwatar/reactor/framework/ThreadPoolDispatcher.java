@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.reactor.framework;
 
 import java.nio.channels.SelectionKey;
@@ -48,8 +49,9 @@ public class ThreadPoolDispatcher implements Dispatcher {
 
   /**
    * Submits the work of dispatching the read event to worker pool, where it gets picked up by
-   * worker threads. <br> Note that this is a non-blocking call and returns immediately. It is not
-   * guaranteed that the event has been handled by associated handler.
+   * worker threads. <br>
+   * Note that this is a non-blocking call and returns immediately. It is not guaranteed that the
+   * event has been handled by associated handler.
    */
   @Override
   public void onChannelReadEvent(AbstractNioChannel channel, Object readObject, SelectionKey key) {

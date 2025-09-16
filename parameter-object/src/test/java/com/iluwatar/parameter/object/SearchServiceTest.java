@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.parameter.object;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SearchServiceTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(SearchServiceTest.class);
@@ -36,26 +37,26 @@ class SearchServiceTest {
   private SearchService searchService;
 
   @BeforeEach
-  public void setUp() {
-    //Creating parameter object with default values set
-    parameterObject = ParameterObject.newBuilder()
-        .withType("sneakers")
-        .build();
+  void setUp() {
+    // Creating parameter object with default values set
+    parameterObject = ParameterObject.newBuilder().withType("sneakers").build();
 
     searchService = new SearchService();
   }
 
-  /**
-   *  Testing parameter object against the overloaded method to verify if the behaviour is same.
-   */
+  /** Testing parameter object against the overloaded method to verify if the behaviour is same. */
   @Test
-  public void testDefaultParametersMatch() {
-    assertEquals(searchService.search(parameterObject), searchService.search("sneakers",
-        SortOrder.ASC), "Default Parameter values do not not match.");
+  void testDefaultParametersMatch() {
+    assertEquals(
+        searchService.search(parameterObject),
+        searchService.search("sneakers", SortOrder.ASC),
+        "Default Parameter values do not not match.");
     LOGGER.info("SortBy Default parameter value matches.");
 
-    assertEquals(searchService.search(parameterObject), searchService.search("sneakers",
-        "price"), "Default Parameter values do not not match.");
+    assertEquals(
+        searchService.search(parameterObject),
+        searchService.search("sneakers", "price"),
+        "Default Parameter values do not not match.");
     LOGGER.info("SortOrder Default parameter value matches.");
 
     LOGGER.info("testDefaultParametersMatch executed successfully without errors.");

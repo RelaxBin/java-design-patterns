@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.data.locality.game.component.manager;
 
 import com.iluwatar.data.locality.game.component.AiComponent;
@@ -28,9 +29,7 @@ import com.iluwatar.data.locality.game.component.Component;
 import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * AI component manager for Game.
- */
+/** AI component manager for Game. */
 @Slf4j
 public class AiComponentManager {
 
@@ -44,17 +43,13 @@ public class AiComponentManager {
     this.numEntities = numEntities;
   }
 
-  /**
-   * start AI component of Game.
-   */
+  /** start AI component of Game. */
   public void start() {
     LOGGER.info("Start AI Game Component");
     IntStream.range(0, numEntities).forEach(i -> aiComponents[i] = new AiComponent());
   }
 
-  /**
-   * Update AI component of Game.
-   */
+  /** Update AI component of Game. */
   public void update() {
     LOGGER.info("Update AI Game Component");
     IntStream.range(0, numEntities)

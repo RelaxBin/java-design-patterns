@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.commander.paymentservice;
 
 import com.iluwatar.commander.Service;
@@ -31,7 +32,6 @@ import lombok.RequiredArgsConstructor;
  * The PaymentService class receives request from the {@link com.iluwatar.commander.Commander} and
  * adds to the {@link PaymentDatabase}.
  */
-
 public class PaymentService extends Service {
 
   @RequiredArgsConstructor
@@ -45,12 +45,9 @@ public class PaymentService extends Service {
     super(db, exc);
   }
 
-  /**
-   * Public method which will receive request from {@link com.iluwatar.commander.Commander}.
-   */
-
+  /** Public method which will receive request from {@link com.iluwatar.commander.Commander}. */
   public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
-    //it could also be sending a userid, payment details here or something, not added here
+    // it could also be sending an userid, payment details here or something, not added here
     var id = generateId();
     var req = new PaymentRequest(id, (float) parameters[0]);
     return updateDb(req);

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.leaderelection.bully;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -35,10 +37,8 @@ import java.util.Map;
 import java.util.Queue;
 import org.junit.jupiter.api.Test;
 
-/**
- * BullyMessageManager unit test.
- */
-public class BullyMessageManagerTest {
+/** BullyMessageManager unit test. */
+class BullyMessageManagerTest {
 
   @Test
   void testSendHeartbeatMessage() {
@@ -55,7 +55,8 @@ public class BullyMessageManagerTest {
       var instance2 = new BullyInstance(null, 1, 2);
       var instance3 = new BullyInstance(null, 1, 3);
       var instance4 = new BullyInstance(null, 1, 4);
-      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
+      Map<Integer, Instance> instanceMap =
+          Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
       instance1.setAlive(false);
       var messageManager = new BullyMessageManager(instanceMap);
       var result = messageManager.sendElectionMessage(3, "3");
@@ -67,7 +68,7 @@ public class BullyMessageManagerTest {
       var expectedMessage = new Message(MessageType.ELECTION_INVOKE, "");
       assertEquals(message2, expectedMessage);
       assertEquals(instance4QueueSize, 0);
-      assertEquals(result, false);
+      assertFalse(result);
     } catch (IllegalAccessException | NoSuchFieldException e) {
       fail("Error to access private field.");
     }
@@ -79,11 +80,12 @@ public class BullyMessageManagerTest {
     var instance2 = new BullyInstance(null, 1, 2);
     var instance3 = new BullyInstance(null, 1, 3);
     var instance4 = new BullyInstance(null, 1, 4);
-    Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
+    Map<Integer, Instance> instanceMap =
+        Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
     instance1.setAlive(false);
     var messageManager = new BullyMessageManager(instanceMap);
     var result = messageManager.sendElectionMessage(2, "2");
-    assertEquals(result, true);
+    assertTrue(result);
   }
 
   @Test
@@ -93,7 +95,8 @@ public class BullyMessageManagerTest {
       var instance2 = new BullyInstance(null, 1, 2);
       var instance3 = new BullyInstance(null, 1, 3);
       var instance4 = new BullyInstance(null, 1, 4);
-      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
+      Map<Integer, Instance> instanceMap =
+          Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
       instance1.setAlive(false);
       var messageManager = new BullyMessageManager(instanceMap);
       messageManager.sendLeaderMessage(2, 2);
@@ -130,6 +133,4 @@ public class BullyMessageManagerTest {
       fail("Error to access private field.");
     }
   }
-
-
 }

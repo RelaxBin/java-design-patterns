@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.promise;
 
 import java.util.concurrent.Callable;
@@ -43,9 +44,7 @@ public class Promise<T> extends PromiseSupport<T> {
   private Runnable fulfillmentAction;
   private Consumer<? super Throwable> exceptionHandler;
 
-  /**
-   * Creates a promise that will be fulfilled in future.
-   */
+  /** Creates a promise that will be fulfilled in the future. */
   public Promise() {
     // Empty constructor
   }
@@ -65,7 +64,7 @@ public class Promise<T> extends PromiseSupport<T> {
    * Fulfills the promise with exception due to error in execution.
    *
    * @param exception the exception will be wrapped in {@link ExecutionException} when accessing the
-   *                  value using {@link #get()}.
+   *     value using {@link #get()}.
    */
   @Override
   public void fulfillExceptionally(Exception exception) {
@@ -92,18 +91,19 @@ public class Promise<T> extends PromiseSupport<T> {
    * Executes the task using the executor in other thread and fulfills the promise returned once the
    * task completes either successfully or with an exception.
    *
-   * @param task     the task that will provide the value to fulfill the promise.
+   * @param task the task that will provide the value to fulfill the promise.
    * @param executor the executor in which the task should be run.
    * @return a promise that represents the result of running the task provided.
    */
   public Promise<T> fulfillInAsync(final Callable<T> task, Executor executor) {
-    executor.execute(() -> {
-      try {
-        fulfill(task.call());
-      } catch (Exception ex) {
-        fulfillExceptionally(ex);
-      }
-    });
+    executor.execute(
+        () -> {
+          try {
+            fulfill(task.call());
+          } catch (Exception ex) {
+            fulfillExceptionally(ex);
+          }
+        });
     return this;
   }
 
@@ -124,7 +124,7 @@ public class Promise<T> extends PromiseSupport<T> {
    * Set the exception handler on this promise.
    *
    * @param exceptionHandler a consumer that will handle the exception occurred while fulfilling the
-   *                         promise.
+   *     promise.
    * @return this
    */
   public Promise<T> onError(Consumer<? super Throwable> exceptionHandler) {

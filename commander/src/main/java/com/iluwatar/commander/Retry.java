@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.commander;
 
 import java.security.SecureRandom;
@@ -35,13 +36,9 @@ import java.util.function.Predicate;
  *
  * @param <T> is the type of object passed into HandleErrorIssue as a parameter.
  */
-
 public class Retry<T> {
 
-  /**
-   * Operation Interface will define method to be implemented.
-   */
-
+  /** Operation Interface will define method to be implemented. */
   public interface Operation {
     void operation(List<Exception> list) throws Exception;
   }
@@ -51,7 +48,6 @@ public class Retry<T> {
    *
    * @param <T> is the type of object to be passed into the method as parameter.
    */
-
   public interface HandleErrorIssue<T> {
     void handleIssue(T obj, Exception e);
   }
@@ -66,8 +62,12 @@ public class Retry<T> {
   private final Predicate<Exception> test;
   private final List<Exception> errors;
 
-  Retry(Operation op, HandleErrorIssue<T> handleError, int maxAttempts,
-        long maxDelay, Predicate<Exception>... ignoreTests) {
+  Retry(
+      Operation op,
+      HandleErrorIssue<T> handleError,
+      int maxAttempts,
+      long maxDelay,
+      Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.handleError = handleError;
     this.maxAttempts = maxAttempts;
@@ -81,9 +81,8 @@ public class Retry<T> {
    * Performing the operation with retries.
    *
    * @param list is the exception list
-   * @param obj  is the parameter to be passed into handleIsuue method
+   * @param obj is the parameter to be passed into handleIsuue method
    */
-
   public void perform(List<Exception> list, T obj) {
     do {
       try {
@@ -93,7 +92,7 @@ public class Retry<T> {
         this.errors.add(e);
         if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
           this.handleError.handleIssue(obj, e);
-          return; //return here...dont go further
+          return; // return here... don't go further
         }
         try {
           long testDelay =
@@ -101,10 +100,9 @@ public class Retry<T> {
           long delay = Math.min(testDelay, this.maxDelay);
           Thread.sleep(delay);
         } catch (InterruptedException f) {
-          //ignore
+          // ignore
         }
       }
     } while (true);
   }
-
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.dirtyflag;
 
 import java.io.BufferedReader;
@@ -31,15 +32,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * A mock database manager -- Fetches data from a raw file.
- *
- * @author swaisuan
- */
+/** A mock database manager -- Fetches data from a raw file. */
 @Slf4j
 public class DataFetcher {
 
-  private final String filename = "world.txt";
+  private static final String FILENAME = "world.txt";
   private long lastFetched;
 
   public DataFetcher() {
@@ -61,14 +58,14 @@ public class DataFetcher {
    */
   public List<String> fetch() {
     var classLoader = getClass().getClassLoader();
-    var file = new File(classLoader.getResource(filename).getFile());
+    var file = new File(classLoader.getResource(FILENAME).getFile());
 
     if (isDirty(file.lastModified())) {
-      LOGGER.info(filename + " is dirty! Re-fetching file content...");
+      LOGGER.info(FILENAME + " is dirty! Re-fetching file content...");
       try (var br = new BufferedReader(new FileReader(file))) {
         return br.lines().collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));
       } catch (IOException e) {
-        e.printStackTrace();
+        LOGGER.error("An error occurred: ", e);
       }
     }
 

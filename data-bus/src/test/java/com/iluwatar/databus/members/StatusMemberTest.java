@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.databus.members;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,48 +35,43 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for {@link StatusMember}.
- *
- * @author Paul Campbell (pcampbell@kemitix.net)
- */
+/** Tests for {@link StatusMember}. */
 class StatusMemberTest {
 
   @Test
   void statusRecordsTheStartTime() {
-    //given
+    // given
     final var startTime = LocalDateTime.of(2017, Month.APRIL, 1, 19, 9);
     final var startingData = new StartingData(startTime);
     final var statusMember = new StatusMember(1);
-    //when
+    // when
     statusMember.accept(startingData);
-    //then
+    // then
     assertEquals(startTime, statusMember.getStarted());
   }
 
   @Test
   void statusRecordsTheStopTime() {
-    //given
+    // given
     final var stop = LocalDateTime.of(2017, Month.APRIL, 1, 19, 12);
     final var stoppingData = new StoppingData(stop);
     stoppingData.setDataBus(DataBus.getInstance());
     final var statusMember = new StatusMember(1);
-    //when
+    // when
     statusMember.accept(stoppingData);
-    //then
+    // then
     assertEquals(stop, statusMember.getStopped());
   }
 
   @Test
   void statusIgnoresMessageData() {
-    //given
+    // given
     final var messageData = new MessageData("message");
     final var statusMember = new StatusMember(1);
-    //when
+    // when
     statusMember.accept(messageData);
-    //then
+    // then
     assertNull(statusMember.getStarted());
     assertNull(statusMember.getStopped());
   }
-
 }

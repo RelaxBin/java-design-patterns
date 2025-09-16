@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.singleton;
 
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
@@ -37,23 +40,17 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
 /**
- * <p>This class provides several test case that test singleton construction.</p>
+ * This class provides several test case that test singleton construction.
  *
  * <p>The first proves that multiple calls to the singleton getInstance object are the same when
  * called in the SAME thread. The second proves that multiple calls to the singleton getInstance
- * object are the same when called in the DIFFERENT thread.</p>
- *
- * <p>Date: 12/29/15 - 19:25 PM</p>
+ * object are the same when called in the DIFFERENT thread.
  *
  * @param <S> Supplier method generating singletons
- * @author Jeroen Meulemeester
- * @author Richard Jones
  */
 abstract class SingletonTest<S> {
 
-  /**
-   * The singleton's getInstance method.
-   */
+  /** The singleton's getInstance method. */
   private final Supplier<S> singletonInstanceMethod;
 
   /**
@@ -65,9 +62,7 @@ abstract class SingletonTest<S> {
     this.singletonInstanceMethod = singletonInstanceMethod;
   }
 
-  /**
-   * Test the singleton in a non-concurrent setting.
-   */
+  /** Test the singleton in a non-concurrent setting. */
   @Test
   void testMultipleCallsReturnTheSameObjectInSameThread() {
     // Create several instances in the same calling thread
@@ -80,33 +75,41 @@ abstract class SingletonTest<S> {
     assertSame(instance2, instance3);
   }
 
-  /**
-   * Test singleton instance in a concurrent setting.
-   */
+  /** Test singleton instance in a concurrent setting. */
   @Test
-  void testMultipleCallsReturnTheSameObjectInDifferentThreads() throws Exception {
-    assertTimeout(ofMillis(10000), () -> {
-      // Create 10000 tasks and inside each callable instantiate the singleton class
-      final var tasks = IntStream.range(0, 10000)
-          .<Callable<S>>mapToObj(i -> this.singletonInstanceMethod::get)
-          .collect(Collectors.toCollection(ArrayList::new));
+  void testMultipleCallsReturnTheSameObjectInDifferentThreads() {
+    assertTimeout(
+        ofMillis(10000),
+        () -> {
+          // Create 10000 tasks and inside each callable instantiate the singleton class
+          final var tasks =
+              IntStream.range(0, 10000)
+                  .<Callable<S>>mapToObj(i -> this.singletonInstanceMethod::get)
+                  .collect(Collectors.toCollection(ArrayList::new));
 
-      // Use up to 8 concurrent threads to handle the tasks
-      final var executorService = Executors.newFixedThreadPool(8);
-      final var results = executorService.invokeAll(tasks);
+          // Use up to 8 concurrent threads to handle the tasks
+          final var executorService = Executors.newFixedThreadPool(8);
+          final var results = executorService.invokeAll(tasks);
 
-      // wait for all of the threads to complete
-      final var expectedInstance = this.singletonInstanceMethod.get();
-      for (var res : results) {
-        final var instance = res.get();
-        assertNotNull(instance);
-        assertSame(expectedInstance, instance);
-      }
+          // wait for all the threads to complete
+          final var expectedInstance = this.singletonInstanceMethod.get();
+          for (var res : results) {
+            final var instance = res.get();
+            assertNotNull(instance);
+            assertSame(expectedInstance, instance);
+          }
 
-      // tidy up the executor
-      executorService.shutdown();
-    });
-
+          // tidy up the executor
+          executorService.shutdown();
+        });
   }
 
+  /** Test creating new instance by reflection. */
+  @Test
+  void testCreatingNewInstanceByReflection() throws Exception {
+    var firstTimeInstantiated = this.singletonInstanceMethod.get();
+    var constructor = firstTimeInstantiated.getClass().getDeclaredConstructor();
+    constructor.setAccessible(true);
+    assertThrows(InvocationTargetException.class, () -> constructor.newInstance((Object[]) null));
+  }
 }

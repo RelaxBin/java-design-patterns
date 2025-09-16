@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.reactor.app;
 
 import com.iluwatar.reactor.framework.AbstractNioChannel;
@@ -46,45 +47,35 @@ import java.util.List;
  * <p><i>PROBLEM</i> <br>
  * Server applications in a distributed system must handle multiple clients that send them service
  * requests. Following forces need to be resolved:
+ *
  * <ul>
- * <li>Availability</li>
- * <li>Efficiency</li>
- * <li>Programming Simplicity</li>
- * <li>Adaptability</li>
+ *   <li>Availability
+ *   <li>Efficiency
+ *   <li>Programming Simplicity
+ *   <li>Adaptability
  * </ul>
  *
  * <p><i>PARTICIPANTS</i> <br>
+ *
  * <ul>
- * <li>Synchronous Event De-multiplexer
- * <p>
- *     {@link NioReactor} plays the role of synchronous event de-multiplexer.
- * It waits for events on multiple channels registered to it in an event loop.
- * </p>
- * </li>
- * <li>Initiation Dispatcher
- * <p>
- *     {@link NioReactor} plays this role as the application specific {@link ChannelHandler}s
- * are registered to the reactor.
- * </p>
- * </li>
- * <li>Handle
- * <p>
- *     {@link AbstractNioChannel} acts as a handle that is registered to the reactor.
- * When any events occur on a handle, reactor calls the appropriate handler.
- * </p>
- * </li>
- * <li>Event Handler
- * <p>
- *      {@link ChannelHandler} acts as an event handler, which is bound to a
- * channel and is called back when any event occurs on any of its associated handles. Application
- * logic resides in event handlers.
- * </p>
- * </li>
+ *   <li>Synchronous Event De-multiplexer
+ *       <p>{@link NioReactor} plays the role of synchronous event de-multiplexer. It waits for
+ *       events on multiple channels registered to it in an event loop.
+ *   <li>Initiation Dispatcher
+ *       <p>{@link NioReactor} plays this role as the application specific {@link ChannelHandler}s
+ *       are registered to the reactor.
+ *   <li>Handle
+ *       <p>{@link AbstractNioChannel} acts as a handle that is registered to the reactor. When any
+ *       events occur on a handle, reactor calls the appropriate handler.
+ *   <li>Event Handler
+ *       <p>{@link ChannelHandler} acts as an event handler, which is bound to a channel and is
+ *       called back when any event occurs on any of its associated handles. Application logic
+ *       resides in event handlers.
  * </ul>
+ *
  * The application utilizes single thread to listen for requests on all ports. It does not create a
  * separate thread for each client, which provides better scalability under load (number of clients
- * increase).
- * The example uses Java NIO framework to implement the Reactor.
+ * increase). The example uses Java NIO framework to implement the Reactor.
  */
 public class App {
 
@@ -102,9 +93,7 @@ public class App {
     this.dispatcher = dispatcher;
   }
 
-  /**
-   * App entry.
-   */
+  /** App entry. */
   public static void main(String[] args) throws IOException {
     new App(new ThreadPoolDispatcher(2)).start();
   }
@@ -142,7 +131,7 @@ public class App {
    * Stops the NIO reactor. This is a blocking call.
    *
    * @throws InterruptedException if interrupted while stopping the reactor.
-   * @throws IOException          if any I/O error occurs
+   * @throws IOException if any I/O error occurs
    */
   public void stop() throws InterruptedException, IOException {
     reactor.stop();

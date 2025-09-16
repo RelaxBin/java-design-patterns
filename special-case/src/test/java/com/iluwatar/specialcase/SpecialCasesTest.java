@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.specialcase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import java.util.List;
-
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
-/**
- * Special cases unit tests. (including the successful scenario {@link ReceiptDto})
- */
-public class SpecialCasesTest {
+/** Special cases unit tests. (including the successful scenario {@link ReceiptDto}) */
+class SpecialCasesTest {
   private static ApplicationServices applicationServices;
   private static ReceiptViewModel receipt;
 
@@ -53,12 +51,12 @@ public class SpecialCasesTest {
   }
 
   @BeforeEach
-  public void beforeEach() {
+  void beforeEach() {
     MaintenanceLock.getInstance().setLock(false);
   }
 
   @Test
-  public void testDownForMaintenance() {
+  void testDownForMaintenance() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(DownForMaintenance.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -75,7 +73,7 @@ public class SpecialCasesTest {
   }
 
   @Test
-  public void testInvalidUser() {
+  void testInvalidUser() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(InvalidUser.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -91,7 +89,7 @@ public class SpecialCasesTest {
   }
 
   @Test
-  public void testOutOfStock() {
+  void testOutOfStock() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(OutOfStock.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -102,13 +100,13 @@ public class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Out of stock: tv for user = ignite1771 to buy"
-        , loggingEventList.get(0).getMessage());
+    assertEquals(
+        "Out of stock: tv for user = ignite1771 to buy", loggingEventList.get(0).getMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 
   @Test
-  public void testInsufficientFunds() {
+  void testInsufficientFunds() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(InsufficientFunds.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -119,13 +117,14 @@ public class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Insufficient funds: 1000.0 of user: ignite1771 for buying item: car"
-        , loggingEventList.get(0).getMessage());
+    assertEquals(
+        "Insufficient funds: 1000.0 of user: ignite1771 for buying item: car",
+        loggingEventList.get(0).getMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 
   @Test
-  public void testReceiptDto() {
+  void testReceiptDto() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(ReceiptDto.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -136,8 +135,7 @@ public class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Receipt: 800.0 paid"
-        , loggingEventList.get(0).getMessage());
+    assertEquals("Receipt: 800.0 paid", loggingEventList.get(0).getMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 }

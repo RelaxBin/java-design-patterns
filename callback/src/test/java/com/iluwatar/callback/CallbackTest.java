@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.callback;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,10 +31,10 @@ import org.junit.jupiter.api.Test;
 /**
  * Add a field as a counter. Every time the callback method is called increment this field. Unit
  * test checks that the field is being incremented.
- * <p>
- * Could be done with mock objects as well where the call method call is verified.
+ *
+ * <p>Could be done with mock objects as well where the call method call is verified.
  */
-public class CallbackTest {
+class CallbackTest {
 
   private Integer callingCount = 0;
 
@@ -52,6 +53,5 @@ public class CallbackTest {
     task.executeWith(callback);
 
     assertEquals(Integer.valueOf(2), callingCount, "Callback called twice");
-
   }
 }

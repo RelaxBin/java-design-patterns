@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.strangler;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * System under migration. Depends on old version source ({@link OldSource}) and
- * developing one ({@link HalfSource}).
+ * System under migration. Depends on old version source ({@link OldSource}) and developing one
+ * ({@link HalfSource}).
  */
 @Slf4j
 public class HalfArithmetic {
@@ -43,6 +44,7 @@ public class HalfArithmetic {
 
   /**
    * Accumulate sum.
+   *
    * @param nums numbers need to add together
    * @return accumulate sum
    */
@@ -53,6 +55,7 @@ public class HalfArithmetic {
 
   /**
    * Accumulate multiplication.
+   *
    * @param nums numbers need to multiply together
    * @return accumulate multiplication
    */
@@ -62,9 +65,10 @@ public class HalfArithmetic {
   }
 
   /**
-   * Chech if has any zero.
+   * Check if it has any zero.
+   *
    * @param nums numbers need to check
-   * @return if has any zero, return true, else, return false
+   * @return if it has any zero, return true, else, return false
    */
   public boolean ifHasZero(int... nums) {
     LOGGER.info("Arithmetic check zero {}", VERSION);

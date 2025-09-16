@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.business.delegate;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-/**
- * Tests for the {@link BusinessDelegate}
- */
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/** Tests for the {@link BusinessDelegate} */
 class BusinessDelegateTest {
 
   private NetflixService netflixService;
@@ -48,7 +46,7 @@ class BusinessDelegateTest {
    * execution of every test.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     netflixService = spy(new NetflixService());
     youTubeService = spy(new YouTubeService());
 
@@ -61,8 +59,8 @@ class BusinessDelegateTest {
   }
 
   /**
-   * In this example the client ({@link MobileClient}) utilizes a business delegate (
-   * {@link BusinessDelegate}) to execute a task. The Business Delegate then selects the appropriate
+   * In this example the client ({@link MobileClient}) utilizes a business delegate ( {@link
+   * BusinessDelegate}) to execute a task. The Business Delegate then selects the appropriate
    * service and makes the service call.
    */
   @Test

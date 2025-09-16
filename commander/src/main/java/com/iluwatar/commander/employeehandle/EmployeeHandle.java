@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.commander.employeehandle;
 
 import com.iluwatar.commander.Order;
@@ -31,7 +32,6 @@ import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
  * The EmployeeHandle class is the middle-man between {@link com.iluwatar.commander.Commander} and
  * {@link EmployeeDatabase}.
  */
-
 public class EmployeeHandle extends Service {
 
   public EmployeeHandle(EmployeeDatabase db, Exception... exc) {
@@ -46,9 +46,8 @@ public class EmployeeHandle extends Service {
     var o = (Order) parameters[0];
     if (database.get(o.id) == null) {
       database.add(o);
-      return o.id; //true rcvd - change addedToEmployeeHandle to true else dont do anything
+      return o.id; // true rcvd - change addedToEmployeeHandle to true else don't do anything
     }
     return null;
   }
-
 }

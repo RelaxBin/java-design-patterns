@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.event.queue;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -31,12 +32,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-/**
- * Testing the Audio service of the Queue
- * @author mkuprivecz
- *
- */
+/** Testing the Audio service of the Queue */
 class AudioTest {
 
   private Audio audio;
@@ -48,7 +44,8 @@ class AudioTest {
 
   /**
    * Test here that the playSound method works correctly
-   * @throws UnsupportedAudioFileException when the audio file is not supported 
+   *
+   * @throws UnsupportedAudioFileException when the audio file is not supported
    * @throws IOException when the file is not readable
    * @throws InterruptedException when the test is interrupted externally
    */
@@ -67,7 +64,8 @@ class AudioTest {
 
   /**
    * Test here that the Queue
-   * @throws UnsupportedAudioFileException when the audio file is not supported 
+   *
+   * @throws UnsupportedAudioFileException when the audio file is not supported
    * @throws IOException when the file is not readable
    * @throws InterruptedException when the test is interrupted externally
    */
@@ -86,5 +84,4 @@ class AudioTest {
     // test that service is finished
     assertFalse(audio.isServiceRunning());
   }
-
 }

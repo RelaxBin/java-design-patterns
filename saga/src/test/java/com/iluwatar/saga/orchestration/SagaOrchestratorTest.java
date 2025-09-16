@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.saga.orchestration;
-
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * test to check general logic
- */
+import org.junit.jupiter.api.Test;
+
+/** test to check general logic */
 class SagaOrchestratorTest {
 
   @Test
@@ -43,8 +42,7 @@ class SagaOrchestratorTest {
   }
 
   private static Saga newSaga() {
-    return Saga
-        .create()
+    return Saga.create()
         .chapter("init an order")
         .chapter("booking a Fly")
         .chapter("booking a Hotel")
@@ -52,11 +50,10 @@ class SagaOrchestratorTest {
   }
 
   private static ServiceDiscoveryService serviceDiscovery() {
-    return
-        new ServiceDiscoveryService()
-            .discover(new OrderService())
-            .discover(new FlyBookingService())
-            .discover(new HotelBookingService())
-            .discover(new WithdrawMoneyService());
+    return new ServiceDiscoveryService()
+        .discover(new OrderService())
+        .discover(new FlyBookingService())
+        .discover(new HotelBookingService())
+        .discover(new WithdrawMoneyService());
   }
 }

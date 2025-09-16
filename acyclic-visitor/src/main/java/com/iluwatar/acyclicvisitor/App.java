@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.acyclicvisitor;
 
 /**
@@ -36,9 +37,7 @@ package com.iluwatar.acyclicvisitor;
  */
 public class App {
 
-  /**
-   * Program's entry point.
-   */
+  /** Program's entry point. */
   public static void main(String[] args) {
     var conUnix = new ConfigureForUnixVisitor();
     var conDos = new ConfigureForDosVisitor();
@@ -49,6 +48,6 @@ public class App {
     hayes.accept(conDos); // Hayes modem with Dos configurator
     zoom.accept(conDos); // Zoom modem with Dos configurator
     hayes.accept(conUnix); // Hayes modem with Unix configurator
-    zoom.accept(conUnix); // Zoom modem with Unix configurator   
+    zoom.accept(conUnix); // Zoom modem with Unix configurator
   }
 }

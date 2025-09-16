@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.poison.pill;
 
 import static com.iluwatar.poison.pill.Message.Headers;
@@ -29,25 +30,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/27/15 - 10:30 PM
- *
- * @author Jeroen Meulemeester
- */
-public class PoisonMessageTest {
+/** PoisonMessageTest */
+class PoisonMessageTest {
 
   @Test
   void testAddHeader() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.addHeader(Headers.SENDER, "sender");
-    });
+    assertThrows(
+        UnsupportedOperationException.class, () -> POISON_PILL.addHeader(Headers.SENDER, "sender"));
   }
 
   @Test
   void testGetHeader() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.getHeader(Headers.SENDER);
-    });
+    assertThrows(UnsupportedOperationException.class, () -> POISON_PILL.getHeader(Headers.SENDER));
   }
 
   @Test
@@ -57,14 +51,11 @@ public class PoisonMessageTest {
 
   @Test
   void testSetBody() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.setBody("Test message.");
-    });
+    assertThrows(UnsupportedOperationException.class, () -> POISON_PILL.setBody("Test message."));
   }
 
   @Test
   void testGetBody() {
     assertThrows(UnsupportedOperationException.class, POISON_PILL::getBody);
   }
-
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.roleobject;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Possible roles.
- */
+/** Possible roles. */
 public enum Role {
-
-  Borrower(BorrowerRole.class), Investor(InvestorRole.class);
+  BORROWER(BorrowerRole.class),
+  INVESTOR(InvestorRole.class);
 
   private final Class<? extends CustomerRole> typeCst;
 
@@ -42,18 +42,18 @@ public enum Role {
 
   private static final Logger logger = LoggerFactory.getLogger(Role.class);
 
-  /**
-   * Get instance.
-   */
+  /** Get instance. */
   @SuppressWarnings("unchecked")
   public <T extends CustomerRole> Optional<T> instance() {
     var typeCst = this.typeCst;
     try {
-      return (Optional<T>) Optional.of(typeCst.newInstance());
-    } catch (InstantiationException | IllegalAccessException e) {
+      return (Optional<T>) Optional.of(typeCst.getDeclaredConstructor().newInstance());
+    } catch (InstantiationException
+        | IllegalAccessException
+        | NoSuchMethodException
+        | InvocationTargetException e) {
       logger.error("error creating an object", e);
     }
     return Optional.empty();
   }
-
 }

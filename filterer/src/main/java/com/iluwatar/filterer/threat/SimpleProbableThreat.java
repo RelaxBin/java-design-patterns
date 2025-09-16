@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,28 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.filterer.threat;
 
 import lombok.EqualsAndHashCode;
 
-/**
- * {@inheritDoc}
- */
+/** {@inheritDoc} */
 @EqualsAndHashCode(callSuper = false)
 public class SimpleProbableThreat extends SimpleThreat implements ProbableThreat {
 
   private final double probability;
 
-  public SimpleProbableThreat(final String name, final int id, final ThreatType threatType,
-                              final double probability) {
+  public SimpleProbableThreat(
+      final String name, final int id, final ThreatType threatType, final double probability) {
     super(threatType, id, name);
     this.probability = probability;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public double probability() {
     return probability;
@@ -49,9 +46,6 @@ public class SimpleProbableThreat extends SimpleThreat implements ProbableThreat
 
   @Override
   public String toString() {
-    return "SimpleProbableThreat{"
-        + "probability=" + probability
-        + "} "
-        + super.toString();
+    return "SimpleProbableThreat{" + "probability=" + probability + "} " + super.toString();
   }
 }

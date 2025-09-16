@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.flux.dispatcher;
 
 import com.iluwatar.flux.action.Action;
@@ -31,30 +32,22 @@ import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.store.Store;
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Getter;
 
-/**
- * Dispatcher sends Actions to registered Stores.
- */
+/** Dispatcher sends Actions to registered Stores. */
 public final class Dispatcher {
 
-  private static Dispatcher instance = new Dispatcher();
+  @Getter private static Dispatcher instance = new Dispatcher();
 
   private final List<Store> stores = new LinkedList<>();
 
-  private Dispatcher() {
-  }
-
-  public static Dispatcher getInstance() {
-    return instance;
-  }
+  private Dispatcher() {}
 
   public void registerStore(Store store) {
     stores.add(store);
   }
 
-  /**
-   * Menu item selected handler.
-   */
+  /** Menu item selected handler. */
   public void menuItemSelected(MenuItem menuItem) {
     dispatchAction(new MenuAction(menuItem));
     if (menuItem == MenuItem.COMPANY) {

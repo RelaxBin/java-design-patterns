@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.specification.creature;
 
 import com.iluwatar.specification.property.Color;
@@ -28,9 +29,7 @@ import com.iluwatar.specification.property.Mass;
 import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
-/**
- * Base class for concrete creatures.
- */
+/** Base class for concrete creatures. */
 public abstract class AbstractCreature implements Creature {
 
   private final String name;
@@ -39,9 +38,7 @@ public abstract class AbstractCreature implements Creature {
   private final Color color;
   private final Mass mass;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public AbstractCreature(String name, Size size, Movement movement, Color color, Mass mass) {
     this.name = name;
     this.size = size;
@@ -52,8 +49,8 @@ public abstract class AbstractCreature implements Creature {
 
   @Override
   public String toString() {
-    return String.format("%s [size=%s, movement=%s, color=%s, mass=%s]",
-        name, size, movement, color, mass);
+    return String.format(
+        "%s [size=%s, movement=%s, color=%s, mass=%s]", name, size, movement, color, mass);
   }
 
   @Override

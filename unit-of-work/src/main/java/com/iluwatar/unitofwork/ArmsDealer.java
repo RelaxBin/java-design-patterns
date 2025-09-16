@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.unitofwork;
 
 import java.util.ArrayList;
@@ -29,12 +30,10 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * {@link ArmsDealer} Weapon repository that supports unit of work for weapons.
- */
+/** {@link ArmsDealer} Weapon repository that supports unit of work for weapons. */
 @Slf4j
 @RequiredArgsConstructor
-public class ArmsDealer implements IUnitOfWork<Weapon> {
+public class ArmsDealer implements UnitOfWork<Weapon> {
 
   private final Map<String, List<Weapon>> context;
   private final WeaponDatabase weaponDatabase;
@@ -49,7 +48,6 @@ public class ArmsDealer implements IUnitOfWork<Weapon> {
   public void registerModified(Weapon weapon) {
     LOGGER.info("Registering {} for modify in context.", weapon.getName());
     register(weapon, UnitActions.MODIFY.getActionValue());
-
   }
 
   @Override
@@ -67,12 +65,10 @@ public class ArmsDealer implements IUnitOfWork<Weapon> {
     context.put(operation, weaponsToOperate);
   }
 
-  /**
-   * All UnitOfWork operations are batched and executed together on commit only.
-   */
+  /** All UnitOfWork operations are batched and executed together on commit only. */
   @Override
   public void commit() {
-    if (context == null || context.size() == 0) {
+    if (context == null || context.isEmpty()) {
       return;
     }
     LOGGER.info("Commit started");

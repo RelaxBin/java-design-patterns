@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.servicelocator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,25 +33,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/29/15 - 19:07 PM
- *
- * @author Jeroen Meulemeester
- */
+/** ServiceLocatorTest */
 class ServiceLocatorTest {
 
-  /**
-   * Verify if we just receive 'null' when requesting a non-existing service
-   */
+  /** Verify if we just receive 'null' when requesting a non-existing service */
   @Test
   void testGetNonExistentService() {
     assertNull(ServiceLocator.getService("fantastic/unicorn/service"));
     assertNull(ServiceLocator.getService("another/fantastic/unicorn/service"));
   }
 
-  /**
-   * Verify if we get the same cached instance when requesting the same service twice
-   */
+  /** Verify if we get the same cached instance when requesting the same service twice */
   @Test
   void testServiceCache() {
     final var serviceNames = List.of("jndi/serviceA", "jndi/serviceB");
@@ -62,7 +55,5 @@ class ServiceLocatorTest {
       assertTrue(service.getId() > 0); // The id is generated randomly, but the minimum value is '1'
       assertSame(service, ServiceLocator.getService(serviceName));
     }
-
   }
-
 }

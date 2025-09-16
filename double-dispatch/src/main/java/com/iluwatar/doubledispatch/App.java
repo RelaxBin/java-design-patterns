@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.doubledispatch;
 
 import java.util.List;
@@ -36,9 +37,9 @@ import lombok.extern.slf4j.Slf4j;
  * to change the method's implementation and add a new instanceof-check. This violates the single
  * responsibility principle - a class should have only one reason to change.
  *
- * <p>Instead of the instanceof-checks a better way is to make another virtual call on the
- * parameter object. This way new functionality can be easily added without the need to modify
- * existing implementation (open-closed principle).
+ * <p>Instead of the instanceof-checks a better way is to make another virtual call on the parameter
+ * object. This way new functionality can be easily added without the need to modify existing
+ * implementation (open-closed principle).
  *
  * <p>In this example we have hierarchy of objects ({@link GameObject}) that can collide to each
  * other. Each object has its own coordinates which are checked against the other objects'
@@ -55,25 +56,28 @@ public class App {
    */
   public static void main(String[] args) {
     // initialize game objects and print their status
-    var objects = List.of(
-        new FlamingAsteroid(0, 0, 5, 5),
-        new SpaceStationMir(1, 1, 2, 2),
-        new Meteoroid(10, 10, 15, 15),
-        new SpaceStationIss(12, 12, 14, 14)
-    );
+    LOGGER.info("Init objects and print their status");
+    var objects =
+        List.of(
+            new FlamingAsteroid(0, 0, 5, 5),
+            new SpaceStationMir(1, 1, 2, 2),
+            new Meteoroid(10, 10, 15, 15),
+            new SpaceStationIss(12, 12, 14, 14));
     objects.forEach(o -> LOGGER.info(o.toString()));
-    LOGGER.info("");
 
     // collision check
-    objects.forEach(o1 -> objects.forEach(o2 -> {
-      if (o1 != o2 && o1.intersectsWith(o2)) {
-        o1.collision(o2);
-      }
-    }));
-    LOGGER.info("");
+    LOGGER.info("Collision check");
+    objects.forEach(
+        o1 ->
+            objects.forEach(
+                o2 -> {
+                  if (o1 != o2 && o1.intersectsWith(o2)) {
+                    o1.collision(o2);
+                  }
+                }));
 
     // output eventual object statuses
+    LOGGER.info("Print object status after collision checks");
     objects.forEach(o -> LOGGER.info(o.toString()));
-    LOGGER.info("");
   }
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.servant;
 
 import java.util.List;
 
-/**
- * Servant.
- */
+/** Servant. */
 public class Servant {
 
   public String name;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Servant(String name) {
     this.name = name;
   }
@@ -51,9 +48,7 @@ public class Servant {
     r.receiveCompliments();
   }
 
-  /**
-   * Check if we will be hanged.
-   */
+  /** Check if we will be hanged. */
   public boolean checkIfYouWillBeHanged(List<Royalty> tableGuests) {
     return tableGuests.stream().allMatch(Royalty::getMood);
   }

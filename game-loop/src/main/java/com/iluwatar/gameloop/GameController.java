@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.gameloop;
 
 /**
- * Update and render objects in the game. Here we add a Bullet object to the
- * game system to show how the game loop works.
+ * Update and render objects in the game. Here we add a Bullet object to the game system to show how
+ * the game loop works.
  */
 public class GameController {
 
   protected final Bullet bullet;
 
-  /**
-   * Initialize Bullet instance.
-   */
+  /** Initialize Bullet instance. */
   public GameController() {
     bullet = new Bullet();
   }
@@ -56,6 +55,4 @@ public class GameController {
   public float getBulletPosition() {
     return bullet.getPosition();
   }
-
 }
-

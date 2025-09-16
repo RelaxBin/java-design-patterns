@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.retry;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -29,23 +30,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for {@link FindCustomer}.
- *
- * @author George Aristy (george.aristy@gmail.com)
- */
+/** Unit tests for {@link FindCustomer}. */
 class FindCustomerTest {
-  /**
-   * Returns the given result with no exceptions.
-   */
+  /** Returns the given result with no exceptions. */
   @Test
   void noExceptions() throws Exception {
     assertThat(new FindCustomer("123").perform(), is("123"));
   }
 
-  /**
-   * Throws the given exception.
-   */
+  /** Throws the given exception. */
   @Test
   void oneException() {
     var findCustomer = new FindCustomer("123", new BusinessException("test"));
@@ -59,20 +52,20 @@ class FindCustomerTest {
    */
   @Test
   void resultAfterExceptions() throws Exception {
-    final var op = new FindCustomer(
-        "123",
-        new CustomerNotFoundException("not found"),
-        new DatabaseNotAvailableException("not available")
-    );
+    final var op =
+        new FindCustomer(
+            "123",
+            new CustomerNotFoundException("not found"),
+            new DatabaseNotAvailableException("not available"));
     try {
       op.perform();
     } catch (CustomerNotFoundException e) {
-      //ignore
+      // ignore
     }
     try {
       op.perform();
     } catch (DatabaseNotAvailableException e) {
-      //ignore
+      // ignore
     }
 
     assertThat(op.perform(), is("123"));

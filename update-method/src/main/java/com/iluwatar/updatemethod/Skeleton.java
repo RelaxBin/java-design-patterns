@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.updatemethod;
 
 /**
- * Skeletons are always patrolling on the game map. Initially all the skeletons
- * patrolling to the right, and after them reach the bounding, it will start
- * patrolling to the left. For each frame, one skeleton will move 1 position
- * step.
+ * Skeletons are always patrolling on the game map. Initially all the skeletons patrolling to the
+ * right, and after them reach the bounding, it will start patrolling to the left. For each frame,
+ * one skeleton will move 1 position step.
  */
 public class Skeleton extends Entity {
 
@@ -75,4 +75,3 @@ public class Skeleton extends Entity {
     logger.info("Skeleton {} is on position {}.", id, position);
   }
 }
-

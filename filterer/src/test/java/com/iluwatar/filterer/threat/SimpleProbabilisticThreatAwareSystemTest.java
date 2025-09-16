@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.filterer.threat;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +33,7 @@ class SimpleProbabilisticThreatAwareSystemTest {
 
   @Test
   void shouldFilterByProbability() {
-    //given
+    // given
     var trojan = new SimpleProbableThreat("Troyan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
     var rootkit = new SimpleProbableThreat("Rootkit-System", 2, ThreatType.ROOTKIT, 0.8);
     List<ProbableThreat> probableThreats = List.of(trojan, rootkit);
@@ -40,11 +41,13 @@ class SimpleProbabilisticThreatAwareSystemTest {
     var simpleProbabilisticThreatAwareSystem =
         new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
 
-    //when
-    var filtered = simpleProbabilisticThreatAwareSystem.filtered()
-        .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
+    // when
+    var filtered =
+        simpleProbabilisticThreatAwareSystem
+            .filtered()
+            .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
 
-    //then
+    // then
     assertEquals(filtered.threats().size(), 1);
     assertEquals(filtered.threats().get(0), trojan);
   }

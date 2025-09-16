@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.gameloop;
 
 /**
- * Frame-based game loop is the easiest implementation. The loop always keeps spinning
- * for the following three processes: processInput, update and render. The problem with
- * it is you have no control over how fast the game runs. On a fast machine, that loop
- * will spin so fast users won’t be able to see what’s going on. On a slow machine, the
- * game will crawl. If you have a part of the game that’s content-heavy or does more AI
- * or physics, the game will actually play slower there.
+ * Frame-based game loop is the easiest implementation. The loop always keeps spinning for the
+ * following three processes: processInput, update and render. The problem with it is you have no
+ * control over how fast the game runs. On a fast machine, that loop will spin so fast users won’t
+ * be able to see what’s going on. On a slow machine, the game will crawl. If you have a part of the
+ * game that’s content-heavy or does more AI or physics, the game will actually play slower there.
  */
 public class FrameBasedGameLoop extends GameLoop {
 
@@ -43,11 +43,10 @@ public class FrameBasedGameLoop extends GameLoop {
   }
 
   /**
-   * Each time when update() is invoked, a new frame is created, and the bullet will be
-   * moved 0.5f away from the current position.
+   * Each time when update() is invoked, a new frame is created, and the bullet will be moved 0.5f
+   * away from the current position.
    */
   protected void update() {
     controller.moveBullet(0.5f);
   }
-
 }

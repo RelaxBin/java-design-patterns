@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.commander;
 
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Order class holds details of the order.
- */
-
-public class Order { //can store all transactions ids also
+/** Order class holds details of the order. */
+public class Order { // can store all transactions ids also
 
   enum PaymentStatus {
     NOT_DONE,
@@ -55,8 +53,8 @@ public class Order { //can store all transactions ids also
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   private static final Map<String, Boolean> USED_IDS = new HashMap<>();
   PaymentStatus paid;
-  MessageSent messageSent; //to avoid sending error msg on page and text more than once
-  boolean addedToEmployeeHandle; //to avoid creating more to enqueue
+  MessageSent messageSent; // to avoid sending error msg on page and text more than once
+  boolean addedToEmployeeHandle; // to avoid creating more to enqueue
 
   Order(User user, String item, float price) {
     this.createdTime = System.currentTimeMillis();
@@ -84,5 +82,4 @@ public class Order { //can store all transactions ids also
     }
     return random.toString();
   }
-
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,29 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.datatransfer.customer;
 
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 
 /**
  * The resource class which serves customer information. This class act as server in the demo. Which
  * has all customer details.
  */
-@RequiredArgsConstructor
-public class CustomerResource {
-  private final List<CustomerDto> customers;
-
-  /**
-   * Get all customers.
-   *
-   * @return : all customers in list.
-   */
-  public List<CustomerDto> getAllCustomers() {
-    return customers;
-  }
-
+public record CustomerResource(List<CustomerDto> customers) {
   /**
    * Save new customer.
    *
@@ -58,6 +46,6 @@ public class CustomerResource {
    * @param customerId delete customer with id {@code customerId}
    */
   public void delete(String customerId) {
-    customers.removeIf(customer -> customer.getId().equals(customerId));
+    customers.removeIf(customer -> customer.id().equals(customerId));
   }
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.saga.choreography;
 
-
-/**
- * Class representing a service to book a hotel.
- */
+/** Class representing a service to book a hotel. */
 public class HotelBookingService extends Service {
   public HotelBookingService(ServiceDiscoveryService service) {
     super(service);
@@ -36,6 +34,4 @@ public class HotelBookingService extends Service {
   public String getName() {
     return "booking a Hotel";
   }
-
-
 }

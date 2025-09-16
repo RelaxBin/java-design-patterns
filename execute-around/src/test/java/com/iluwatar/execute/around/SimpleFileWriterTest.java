@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.execute.around;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -30,22 +31,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import lombok.SneakyThrows;
 import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
 import org.junit.rules.TemporaryFolder;
 
-/**
- * Date: 12/12/15 - 3:21 PM
- *
- * @author Jeroen Meulemeester
- */
+/** SimpleFileWriterTest */
 @EnableRuleMigrationSupport
 class SimpleFileWriterTest {
 
-  @Rule
-  public final TemporaryFolder testFolder = new TemporaryFolder();
+  @Rule public final TemporaryFolder testFolder = new TemporaryFolder();
 
   @Test
   void testWriterNotNull() throws Exception {
@@ -74,14 +71,18 @@ class SimpleFileWriterTest {
   }
 
   @Test
+  @SneakyThrows
   void testRipplesIoExceptionOccurredWhileWriting() {
     var message = "Some error";
-    assertThrows(IOException.class, () -> {
-      final var temporaryFile = this.testFolder.newFile();
-      new SimpleFileWriter(temporaryFile.getPath(), writer -> {
-        throw new IOException(message);
-      });
-    }, message);
+    final var temporaryFile = this.testFolder.newFile();
+    assertThrows(
+        IOException.class,
+        () ->
+            new SimpleFileWriter(
+                temporaryFile.getPath(),
+                writer -> {
+                  throw new IOException("error");
+                }),
+        message);
   }
-
 }

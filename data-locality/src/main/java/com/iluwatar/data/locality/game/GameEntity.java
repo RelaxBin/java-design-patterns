@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.data.locality.game;
 
 import com.iluwatar.data.locality.game.component.manager.AiComponentManager;
@@ -45,9 +46,7 @@ public class GameEntity {
   private final PhysicsComponentManager physicsComponentManager;
   private final RenderComponentManager renderComponentManager;
 
-  /**
-   * Init components.
-   */
+  /** Init components. */
   public GameEntity(int numEntities) {
     LOGGER.info("Init Game with #Entity : {}", numEntities);
     aiComponentManager = new AiComponentManager(numEntities);
@@ -55,9 +54,7 @@ public class GameEntity {
     renderComponentManager = new RenderComponentManager(numEntities);
   }
 
-  /**
-   * start all component.
-   */
+  /** start all component. */
   public void start() {
     LOGGER.info("Start Game");
     aiComponentManager.start();
@@ -65,9 +62,7 @@ public class GameEntity {
     renderComponentManager.start();
   }
 
-  /**
-   * update all component.
-   */
+  /** update all component. */
   public void update() {
     LOGGER.info("Update Game Component");
     // Process AI.
@@ -79,5 +74,4 @@ public class GameEntity {
     // Draw to screen.
     renderComponentManager.render();
   }
-
 }

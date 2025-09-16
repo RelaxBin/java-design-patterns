@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.retry;
 
 import static org.hamcrest.CoreMatchers.hasItem;
@@ -29,30 +30,24 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for {@link Retry}.
- *
- * @author George Aristy (george.aristy@gmail.com)
- */
+/** Unit tests for {@link Retry}. */
 class RetryTest {
 
-  /**
-   * Should contain all errors thrown.
-   */
+  /** Should contain all errors thrown. */
   @Test
   void errors() {
     final var e = new BusinessException("unhandled");
-    final var retry = new Retry<String>(
-        () -> {
-          throw e;
-        },
-        2,
-        0
-    );
+    final var retry =
+        new Retry<String>(
+            () -> {
+              throw e;
+            },
+            2,
+            0);
     try {
       retry.perform();
     } catch (BusinessException ex) {
-      //ignore
+      // ignore
     }
 
     assertThat(retry.errors(), hasItem(e));
@@ -65,17 +60,17 @@ class RetryTest {
   @Test
   void attempts() {
     final var e = new BusinessException("unhandled");
-    final var retry = new Retry<String>(
-        () -> {
-          throw e;
-        },
-        2,
-        0
-    );
+    final var retry =
+        new Retry<String>(
+            () -> {
+              throw e;
+            },
+            2,
+            0);
     try {
       retry.perform();
     } catch (BusinessException ex) {
-      //ignore
+      // ignore
     }
 
     assertThat(retry.attempts(), is(1));
@@ -88,21 +83,20 @@ class RetryTest {
   @Test
   void ignore() {
     final var e = new CustomerNotFoundException("customer not found");
-    final var retry = new Retry<String>(
-        () -> {
-          throw e;
-        },
-        2,
-        0,
-        ex -> CustomerNotFoundException.class.isAssignableFrom(ex.getClass())
-    );
+    final var retry =
+        new Retry<String>(
+            () -> {
+              throw e;
+            },
+            2,
+            0,
+            ex -> CustomerNotFoundException.class.isAssignableFrom(ex.getClass()));
     try {
       retry.perform();
     } catch (BusinessException ex) {
-      //ignore
+      // ignore
     }
 
     assertThat(retry.attempts(), is(2));
   }
-
 }

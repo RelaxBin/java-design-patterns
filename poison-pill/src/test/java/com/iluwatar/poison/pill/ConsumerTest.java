@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.poison.pill;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,33 +37,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * Date: 12/27/15 - 9:45 PM
- *
- * @author Jeroen Meulemeester
- */
-public class ConsumerTest {
+/** ConsumerTest */
+class ConsumerTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(Consumer.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
   @Test
   void testConsume() throws Exception {
-    final var messages = List.of(
-        createMessage("you", "Hello!"),
-        createMessage("me", "Hi!"),
-        Message.POISON_PILL,
-        createMessage("late_for_the_party", "Hello? Anyone here?")
-    );
+    final var messages =
+        List.of(
+            createMessage("you", "Hello!"),
+            createMessage("me", "Hi!"),
+            Message.POISON_PILL,
+            createMessage("late_for_the_party", "Hello? Anyone here?"));
 
     final var queue = new SimpleMessageQueue(messages.size());
     for (final var message : messages) {
@@ -79,7 +76,7 @@ public class ConsumerTest {
   /**
    * Create a new message from the given sender with the given message body
    *
-   * @param sender  The sender's name
+   * @param sender The sender's name
    * @param message The message body
    * @return The message instance
    */
@@ -91,7 +88,7 @@ public class ConsumerTest {
     return msg;
   }
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class clazz) {
@@ -108,5 +105,4 @@ public class ConsumerTest {
       return log.stream().map(ILoggingEvent::getFormattedMessage).anyMatch(message::equals);
     }
   }
-
 }

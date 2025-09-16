@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,27 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.delegation.simple.printers;
 
 import com.iluwatar.delegation.simple.Printer;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Specialised Implementation of {@link Printer} for a Epson Printer, in this case the message to be
- * printed is appended to "Epson Printer : ".
+ * Specialised Implementation of {@link Printer} for an Epson Printer, in this case the message to
+ * be printed is appended to "Epson Printer : ".
  *
  * @see Printer
  */
 @Slf4j
 public class EpsonPrinter implements Printer {
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void print(String message) {
     LOGGER.info("Epson Printer : {}", message);
   }
-
 }

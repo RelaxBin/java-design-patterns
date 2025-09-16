@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.reactor.app;
 
 import com.iluwatar.reactor.framework.AbstractNioChannel;
@@ -39,9 +40,7 @@ public class LoggingHandler implements ChannelHandler {
 
   private static final byte[] ACK = "Data logged successfully".getBytes();
 
-  /**
-   * Decodes the received data and logs it on standard console.
-   */
+  /** Decodes the received data and logs it on standard console. */
   @Override
   public void handleChannelRead(AbstractNioChannel channel, Object readObject, SelectionKey key) {
     /*
@@ -51,8 +50,7 @@ public class LoggingHandler implements ChannelHandler {
     if (readObject instanceof ByteBuffer) {
       doLogging((ByteBuffer) readObject);
       sendReply(channel, key);
-    } else if (readObject instanceof DatagramPacket) {
-      var datagram = (DatagramPacket) readObject;
+    } else if (readObject instanceof DatagramPacket datagram) {
       doLogging(datagram.getData());
       sendReply(channel, datagram, key);
     } else {
@@ -61,10 +59,7 @@ public class LoggingHandler implements ChannelHandler {
   }
 
   private static void sendReply(
-      AbstractNioChannel channel,
-      DatagramPacket incomingPacket,
-      SelectionKey key
-  ) {
+      AbstractNioChannel channel, DatagramPacket incomingPacket, SelectionKey key) {
     /*
      * Create a reply acknowledgement datagram packet setting the receiver to the sender of incoming
      * message.

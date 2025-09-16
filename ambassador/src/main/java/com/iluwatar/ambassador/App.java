@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.ambassador;
 
 /**
  * The ambassador pattern creates a helper service that sends network requests on behalf of a
  * client. It is often used in cloud-based applications to offload features of a remote service.
  *
- * <p>An ambassador service can be thought of as an out-of-process proxy that is co-located with
- * the client. Similar to the proxy design pattern, the ambassador service provides an interface for
+ * <p>An ambassador service can be thought of as an out-of-process proxy that is co-located with the
+ * client. Similar to the proxy design pattern, the ambassador service provides an interface for
  * another remote service. In addition to the interface, the ambassador provides extra functionality
  * and features, specifically offloaded common connectivity tasks. This usually consists of
  * monitoring, logging, routing, security etc. This is extremely useful in legacy applications where
@@ -36,14 +37,11 @@ package com.iluwatar.ambassador;
  * capabilities.
  *
  * <p>In this example, we will the ({@link ServiceAmbassador}) class represents the ambassador while
- * the
- * ({@link RemoteService}) class represents a remote application.
+ * the ({@link RemoteService}) class represents a remote application.
  */
 public class App {
 
-  /**
-   * Entry point.
-   */
+  /** Entry point. */
   public static void main(String[] args) {
     var host1 = new Client();
     var host2 = new Client();

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.acyclicvisitor;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Hayes class implements its accept method.
- */
+/** Hayes class implements its accept method. */
 @Slf4j
 public class Hayes implements Modem {
 
-  /**
-   * Accepts all visitors but honors only HayesVisitor.
-   */
+  /** Accepts all visitors but honors only HayesVisitor. */
   @Override
   public void accept(ModemVisitor modemVisitor) {
     if (modemVisitor instanceof HayesVisitor) {
@@ -41,12 +38,9 @@ public class Hayes implements Modem {
     } else {
       LOGGER.info("Only HayesVisitor is allowed to visit Hayes modem");
     }
-
   }
 
-  /**
-   * Hayes' modem's toString method.
-   */
+  /** Hayes' modem's toString method. */
   @Override
   public String toString() {
     return "Hayes modem";

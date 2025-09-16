@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,34 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.balking;
 
 import java.util.concurrent.TimeUnit;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Washing machine class.
- */
+/** Washing machine class. */
 @Slf4j
 public class WashingMachine {
 
   private final DelayProvider delayProvider;
-  private WashingMachineState washingMachineState;
 
-  /**
-   * Creates a new instance of WashingMachine.
-   */
+  @Getter private WashingMachineState washingMachineState;
+
+  /** Creates a new instance of WashingMachine. */
   public WashingMachine() {
-    this((interval, timeUnit, task) -> {
-      try {
-        Thread.sleep(timeUnit.toMillis(interval));
-      } catch (InterruptedException ie) {
-        LOGGER.error("", ie);
-        Thread.currentThread().interrupt();
-      }
-      task.run();
-    });
+    this(
+        (interval, timeUnit, task) -> {
+          try {
+            Thread.sleep(timeUnit.toMillis(interval));
+          } catch (InterruptedException ie) {
+            LOGGER.error("", ie);
+            Thread.currentThread().interrupt();
+          }
+          task.run();
+        });
   }
 
   /**
@@ -59,13 +59,7 @@ public class WashingMachine {
     this.washingMachineState = WashingMachineState.ENABLED;
   }
 
-  public WashingMachineState getWashingMachineState() {
-    return washingMachineState;
-  }
-
-  /**
-   * Method responsible for washing if the object is in appropriate state.
-   */
+  /** Method responsible for washing if the object is in appropriate state. */
   public void wash() {
     synchronized (this) {
       var machineState = getWashingMachineState();
@@ -81,12 +75,9 @@ public class WashingMachine {
     this.delayProvider.executeAfterDelay(50, TimeUnit.MILLISECONDS, this::endOfWashing);
   }
 
-  /**
-   * Method responsible of ending the washing by changing machine state.
-   */
+  /** Method is responsible for ending the washing by changing machine state. */
   public synchronized void endOfWashing() {
     washingMachineState = WashingMachineState.ENABLED;
     LOGGER.info("{}: Washing completed.", Thread.currentThread().getId());
   }
-
 }

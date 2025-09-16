@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.abstractdocument;
 
 import com.iluwatar.abstractdocument.domain.Car;
@@ -48,20 +49,26 @@ public class App {
   public static void main(String[] args) {
     LOGGER.info("Constructing parts and car");
 
-    var wheelProperties = Map.of(
-        Property.TYPE.toString(), "wheel",
-        Property.MODEL.toString(), "15C",
-        Property.PRICE.toString(), 100L);
+    var wheelProperties =
+        Map.of(
+            Property.TYPE.toString(), "wheel",
+            Property.MODEL.toString(), "15C",
+            Property.PRICE.toString(), 100L);
 
-    var doorProperties = Map.of(
-        Property.TYPE.toString(), "door",
-        Property.MODEL.toString(), "Lambo",
-        Property.PRICE.toString(), 300L);
+    var doorProperties =
+        Map.of(
+            Property.TYPE.toString(), "door",
+            Property.MODEL.toString(), "Lambo",
+            Property.PRICE.toString(), 300L);
 
-    var carProperties = Map.of(
-        Property.MODEL.toString(), "300SL",
-        Property.PRICE.toString(), 10000L,
-        Property.PARTS.toString(), List.of(wheelProperties, doorProperties));
+    var carProperties =
+        Map.of(
+            Property.MODEL.toString(),
+            "300SL",
+            Property.PRICE.toString(),
+            10000L,
+            Property.PARTS.toString(),
+            List.of(wheelProperties, doorProperties));
 
     var car = new Car(carProperties);
 
@@ -69,10 +76,13 @@ public class App {
     LOGGER.info("-> model: {}", car.getModel().orElseThrow());
     LOGGER.info("-> price: {}", car.getPrice().orElseThrow());
     LOGGER.info("-> parts: ");
-    car.getParts().forEach(p -> LOGGER.info("\t{}/{}/{}",
-        p.getType().orElse(null),
-        p.getModel().orElse(null),
-        p.getPrice().orElse(null))
-    );
+    car.getParts()
+        .forEach(
+            p ->
+                LOGGER.info(
+                    "\t{}/{}/{}",
+                    p.getType().orElse(null),
+                    p.getModel().orElse(null),
+                    p.getPrice().orElse(null)));
   }
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.mediator;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/19/15 - 10:00 PM
- *
- * @author Jeroen Meulemeester
- */
-public class PartyImplTest {
+/** PartyImplTest */
+class PartyImplTest {
 
   /**
    * Verify if a member is notified when it's joining a party. Generate an action and see if the
@@ -54,10 +50,9 @@ public class PartyImplTest {
     verify(partyMember2).joinedParty(party);
 
     party.act(partyMember1, Action.GOLD);
-    verifyZeroInteractions(partyMember1);
+    verifyNoMoreInteractions(partyMember1);
     verify(partyMember2).partyAction(Action.GOLD);
 
     verifyNoMoreInteractions(partyMember1, partyMember2);
   }
-
 }

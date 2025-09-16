@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.leaderelection.bully;
 
 import com.iluwatar.leaderelection.AbstractMessageManager;
@@ -29,16 +30,11 @@ import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageType;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-/**
- * Implementation of BullyMessageManager.
- */
+/** Implementation of BullyMessageManager. */
 public class BullyMessageManager extends AbstractMessageManager {
 
-  /**
-   * Constructor of BullyMessageManager.
-   */
+  /** Constructor of BullyMessageManager. */
   public BullyMessageManager(Map<Integer, Instance> instanceMap) {
     super(instanceMap);
   }
@@ -52,15 +48,14 @@ public class BullyMessageManager extends AbstractMessageManager {
   @Override
   public boolean sendHeartbeatMessage(int leaderId) {
     var leaderInstance = instanceMap.get(leaderId);
-    var alive = leaderInstance.isAlive();
-    return alive;
+    return leaderInstance.isAlive();
   }
 
   /**
    * Send election message to all the instances with smaller ID.
    *
    * @param currentId Instance ID of which sends this message.
-   * @param content   Election message content.
+   * @param content Election message content.
    * @return {@code true} if no alive instance has smaller ID, so that the election is accepted.
    */
   @Override
@@ -70,7 +65,7 @@ public class BullyMessageManager extends AbstractMessageManager {
       return true;
     } else {
       var electionMessage = new Message(MessageType.ELECTION_INVOKE, "");
-      candidateList.stream().forEach((i) -> instanceMap.get(i).onMessage(electionMessage));
+      candidateList.forEach((i) -> instanceMap.get(i).onMessage(electionMessage));
       return false;
     }
   }
@@ -79,14 +74,13 @@ public class BullyMessageManager extends AbstractMessageManager {
    * Send leader message to all the instances to notify the new leader.
    *
    * @param currentId Instance ID of which sends this message.
-   * @param leaderId  Leader message content.
+   * @param leaderId Leader message content.
    * @return {@code true} if the message is accepted.
    */
   @Override
   public boolean sendLeaderMessage(int currentId, int leaderId) {
     var leaderMessage = new Message(MessageType.LEADER, String.valueOf(leaderId));
-    instanceMap.keySet()
-        .stream()
+    instanceMap.keySet().stream()
         .filter((i) -> i != currentId)
         .forEach((i) -> instanceMap.get(i).onMessage(leaderMessage));
     return false;
@@ -111,10 +105,8 @@ public class BullyMessageManager extends AbstractMessageManager {
    * @return ID list of all the candidate instance.
    */
   private List<Integer> findElectionCandidateInstanceList(int currentId) {
-    return instanceMap.keySet()
-        .stream()
+    return instanceMap.keySet().stream()
         .filter((i) -> i < currentId && instanceMap.get(i).isAlive())
-        .collect(Collectors.toList());
+        .toList();
   }
-
 }

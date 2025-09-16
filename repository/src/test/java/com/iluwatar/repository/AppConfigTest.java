@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,37 +36,32 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * This case is Just for test the Annotation Based configuration
- */
+/** This case is Just for test the Annotation Based configuration */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {AppConfig.class})
 class AppConfigTest {
 
-  @Autowired
-  DataSource dataSource;
+  @Autowired DataSource dataSource;
 
-  /**
-   * Test for bean instance
-   */
+  /** Test for bean instance */
   @Test
   void testDataSource() {
     assertNotNull(dataSource);
   }
 
-  /**
-   * Test for correct query execution
-   */
+  /** Test for correct query execution */
   @Test
   @Transactional
   void testQuery() throws SQLException {
-    var resultSet = dataSource.getConnection().createStatement().executeQuery("SELECT 1");
-    var expected = "1";
-    String result = null;
-    while (resultSet.next()) {
-      result = resultSet.getString(1);
+    String expected;
+    String result;
+    try (var resultSet = dataSource.getConnection().createStatement().executeQuery("SELECT 1")) {
+      expected = "1";
+      result = null;
+      while (resultSet.next()) {
+        result = resultSet.getString(1);
+      }
     }
     assertEquals(expected, result);
   }
-
 }

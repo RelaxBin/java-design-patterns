@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.datatransfer.customer;
-
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 /**
  * {@link CustomerDto} is a data transfer object POJO. Instead of sending individual information to
@@ -32,11 +30,4 @@ import lombok.RequiredArgsConstructor;
  *
  * <p>Dto will not have any business logic in it.
  */
-@Getter
-@RequiredArgsConstructor
-public class CustomerDto {
-  private final String id;
-  private final String firstName;
-  private final String lastName;
-
-}
+public record CustomerDto(String id, String firstName, String lastName) {}

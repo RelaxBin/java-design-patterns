@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.commander;
 
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -38,7 +38,6 @@ import java.util.List;
  * for the transactions/requests, which are then sent back. These could be stored by the {@link
  * Commander} class in a separate database for reference (though we are not doing that here).
  */
-
 public abstract class Service {
 
   protected final Database database;

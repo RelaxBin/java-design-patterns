@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.specification.selector;
-
 
 /**
  * A Selector defined as the negation (NOT) of a (leaf) selectors. This is of course only useful
@@ -36,9 +36,7 @@ public class NegationSelector<T> extends AbstractSelector<T> {
     this.component = selector;
   }
 
-  /**
-   * Tests if the selector fails the test (yes).
-   */
+  /** Tests if the selector fails the test (yes). */
   @Override
   public boolean test(T t) {
     return !(component.test(t));

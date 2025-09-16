@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.throttling;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,17 +30,16 @@ import com.iluwatar.throttling.timer.Throttler;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
-/**
- * B2BServiceTest class to test the B2BService
- */
-public class BartenderTest {
+/** B2BServiceTest class to test the B2BService */
+class BartenderTest {
 
   private final CallsCount callsCount = new CallsCount();
 
   @Test
   void dummyCustomerApiTest() {
     var tenant = new BarCustomer("pirate", 2, callsCount);
-    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
+    // In order to assure that throttling limits will not be reset, we use an empty throttling
+    // implementation
     var timer = (Throttler) () -> {};
     var service = new Bartender(timer, callsCount);
 

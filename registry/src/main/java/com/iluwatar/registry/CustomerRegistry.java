@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.registry;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import lombok.Getter;
 
+/** CustomerRegistry class used to store/access {@link Customer} objects. */
 public final class CustomerRegistry {
 
-  private static final CustomerRegistry instance = new CustomerRegistry();
-
-  public static CustomerRegistry getInstance() {
-    return instance;
-  }
+  @Getter private static final CustomerRegistry instance = new CustomerRegistry();
 
   private final Map<String, Customer> customerMap;
 
@@ -41,11 +40,10 @@ public final class CustomerRegistry {
   }
 
   public Customer addCustomer(Customer customer) {
-    return customerMap.put(customer.getId(), customer);
+    return customerMap.put(customer.id(), customer);
   }
 
   public Customer getCustomer(String id) {
     return customerMap.get(id);
   }
-
 }

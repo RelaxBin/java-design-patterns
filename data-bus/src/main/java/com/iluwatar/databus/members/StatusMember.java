@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.databus.members;
 
 import com.iluwatar.databus.DataType;
@@ -33,11 +34,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Receiver of Data-Bus events.
- *
- * @author Paul Campbell (pcampbell@kemitix.net)
- */
+/** Receiver of Data-Bus events. */
 @Getter
 @Slf4j
 @RequiredArgsConstructor
@@ -69,5 +66,4 @@ public class StatusMember implements Member {
     LOGGER.info("Receiver {} sending goodbye message", id);
     data.getDataBus().publish(MessageData.of(String.format("Goodbye cruel world from #%d!", id)));
   }
-
 }

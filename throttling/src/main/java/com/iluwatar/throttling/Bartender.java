@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.throttling;
 
 import com.iluwatar.throttling.timer.Throttler;
@@ -29,8 +30,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Bartender is a service which accepts a BarCustomer (tenant) and throttles
- * the resource based on the time given to the tenant.
+ * Bartender is a service which accepts a BarCustomer (tenant) and throttles the resource based on
+ * the time given to the tenant.
  */
 class Bartender {
 
@@ -44,6 +45,7 @@ class Bartender {
 
   /**
    * Orders a drink from the bartender.
+   *
    * @return customer id which is randomly generated
    */
   public int orderDrink(BarCustomer barCustomer) {

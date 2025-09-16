@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.monostate;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -30,31 +32,26 @@ import lombok.extern.slf4j.Slf4j;
  * in a simplistic Round Robin fashion.
  */
 @Slf4j
+@Getter
 public class Server {
 
   public final String host;
   public final int port;
   public final int id;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Server(String host, int port, int id) {
     this.host = host;
     this.port = port;
     this.id = id;
   }
 
-  public String getHost() {
-    return host;
-  }
-
-  public int getPort() {
-    return port;
-  }
-
   public void serve(Request request) {
-    LOGGER.info("Server ID {} associated to host : {} and port {}. Processed request with value {}",
-        id, host, port, request.value);
+    LOGGER.info(
+        "Server ID {} associated to host : {} and port {}. Processed request with value {}",
+        id,
+        host,
+        port,
+        request.value());
   }
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.doubledispatch;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * Rectangle has coordinates and can be checked for overlap against other Rectangles.
- */
+/** Rectangle has coordinates and can be checked for overlap against other Rectangles. */
 @Getter
 @RequiredArgsConstructor
 public class Rectangle {
@@ -39,8 +38,10 @@ public class Rectangle {
   private final int bottom;
 
   boolean intersectsWith(Rectangle r) {
-    return !(r.getLeft() > getRight() || r.getRight() < getLeft() || r.getTop() > getBottom() || r
-        .getBottom() < getTop());
+    return !(r.getLeft() > getRight()
+        || r.getRight() < getLeft()
+        || r.getTop() > getBottom()
+        || r.getBottom() < getTop());
   }
 
   @Override

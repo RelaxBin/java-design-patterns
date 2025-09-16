@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,36 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.partialresponse;
 
 import java.lang.reflect.Field;
+import java.util.StringJoiner;
 
-/**
- * Map a video to json.
- */
+/** Map a video to json. */
 public class FieldJsonMapper {
 
   /**
    * Gets json of required fields from video.
    *
-   * @param video  object containing video information
+   * @param video object containing video information
    * @param fields fields information to get
    * @return json of required fields from video
    */
   public String toJson(Video video, String[] fields) throws Exception {
-    var json = new StringBuilder().append("{");
+    var json = new StringJoiner(",", "{", "}");
 
     var i = 0;
     var fieldsLength = fields.length;
     while (i < fieldsLength) {
-      json.append(getString(video, Video.class.getDeclaredField(fields[i])));
-      if (i != fieldsLength - 1) {
-        json.append(",");
-      }
+      json.add(getString(video, Video.class.getDeclaredField(fields[i])));
       i++;
     }
-    json.append("}");
+
     return json.toString();
   }
 

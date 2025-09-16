@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.arrangeactassert;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,11 +32,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Arrange/Act/Assert (AAA) is a pattern for organizing unit tests. It is a way to structure your
- * tests so they're easier to read, maintain and enhance.
+ * tests, so they're easier to read, maintain and enhance.
  *
  * <p>It breaks tests down into three clear and distinct steps:
+ *
  * <p>1. Arrange: Perform the setup and initialization required for the test.
+ *
  * <p>2. Act: Take action(s) required for the test.
+ *
  * <p>3. Assert: Verify the outcome(s) of the test.
  *
  * <p>This pattern has several significant benefits. It creates a clear separation between a test's
@@ -47,53 +51,52 @@ import org.junit.jupiter.api.Test;
  * clearly about the three steps your test will perform. But it makes tests more natural to write at
  * the same time since you already have an outline.
  *
- * <p>In ({@link CashAAATest}) we have four test methods. Each of them has only one reason to
- * change and one reason to fail. In a large and complicated code base, tests that honor the single
+ * <p>In ({@link CashAAATest}) we have four test methods. Each of them has only one reason to change
+ * and one reason to fail. In a large and complicated code base, tests that honor the single
  * responsibility principle are much easier to troubleshoot.
  */
-
 class CashAAATest {
 
   @Test
   void testPlus() {
-    //Arrange
+    // Arrange
     var cash = new Cash(3);
-    //Act
+    // Act
     cash.plus(4);
-    //Assert
+    // Assert
     assertEquals(7, cash.count());
   }
 
   @Test
   void testMinus() {
-    //Arrange
+    // Arrange
     var cash = new Cash(8);
-    //Act
+    // Act
     var result = cash.minus(5);
-    //Assert
+    // Assert
     assertTrue(result);
     assertEquals(3, cash.count());
   }
 
   @Test
   void testInsufficientMinus() {
-    //Arrange
+    // Arrange
     var cash = new Cash(1);
-    //Act
+    // Act
     var result = cash.minus(6);
-    //Assert
+    // Assert
     assertFalse(result);
     assertEquals(1, cash.count());
   }
 
   @Test
   void testUpdate() {
-    //Arrange
+    // Arrange
     var cash = new Cash(5);
-    //Act
+    // Act
     cash.plus(6);
     var result = cash.minus(3);
-    //Assert
+    // Assert
     assertTrue(result);
     assertEquals(8, cash.count());
   }

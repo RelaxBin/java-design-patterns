@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.servicelayer.common;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,39 +36,30 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/28/15 - 10:53 PM Test for Base Data Access Objects
+ * Test for Base Data Access Objects
  *
  * @param <E> Type of Base Entity
  * @param <D> Type of Dao Base Implementation
- * @author Jeroen Meulemeester
  */
 public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>> {
 
-  /**
-   * The number of entities stored before each test
-   */
+  /** The number of entities stored before each test */
   private static final int INITIAL_COUNT = 5;
 
-  /**
-   * The unique id generator, shared between all entities
-   */
+  /** The unique id generator, shared between all entities */
   private static final AtomicInteger ID_GENERATOR = new AtomicInteger();
 
-  /**
-   * Factory, used to create new entity instances with the given name
-   */
+  /** Factory, used to create new entity instances with the given name */
   private final Function<String, E> factory;
 
-  /**
-   * The tested data access object
-   */
+  /** The tested data access object */
   private final D dao;
 
   /**
    * Create a new test using the given factory and dao
    *
    * @param factory The factory, used to create new entity instances with the given name
-   * @param dao     The tested data access object
+   * @param dao The tested data access object
    */
   public BaseDaoTest(final Function<String, E> factory, final D dao) {
     this.factory = factory;
@@ -75,7 +67,7 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
   }
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     for (int i = 0; i < INITIAL_COUNT; i++) {
       final var className = dao.persistentClass.getSimpleName();
       final var entityName = String.format("%s%d", className, ID_GENERATOR.incrementAndGet());
@@ -84,7 +76,7 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     HibernateUtil.dropSession();
   }
 
@@ -141,5 +133,4 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
     assertEquals(expectedName, entity.getName());
     assertEquals(expectedName, entity.toString());
   }
-
 }

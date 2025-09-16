@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.model.view.presenter;
 
 /**
@@ -35,34 +36,22 @@ package com.iluwatar.model.view.presenter;
  */
 public class FileSelectorStub implements FileSelectorView {
 
-  /**
-   * Indicates whether or not the view is opened.
-   */
+  /** Indicates whether or not the view is opened. */
   private boolean opened;
 
-  /**
-   * The presenter Component.
-   */
+  /** The presenter Component. */
   private FileSelectorPresenter presenter;
 
-  /**
-   * The current name of the file.
-   */
+  /** The current name of the file. */
   private String name;
 
-  /**
-   * Indicates the number of messages that were "displayed" to the user.
-   */
+  /** Indicates the number of messages that were "displayed" to the user. */
   private int numOfMessageSent;
 
-  /**
-   * Indicates if the data of the file where displayed or not.
-   */
+  /** Indicates if the data of the file where displayed or not. */
   private boolean dataDisplayed;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public FileSelectorStub() {
     this.opened = false;
     this.presenter = null;
@@ -116,9 +105,7 @@ public class FileSelectorStub implements FileSelectorView {
     this.dataDisplayed = true;
   }
 
-  /**
-   * Returns the number of messages that were displayed to the user.
-   */
+  /** Returns the number of messages that were displayed to the user. */
   public int getMessagesSent() {
     return this.numOfMessageSent;
   }

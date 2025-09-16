@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.servicelocator;
 
 /**
  * The service locator module. Will fetch service from cache, otherwise creates a fresh service and
  * update cache
- *
- * @author saifasif
  */
 public final class ServiceLocator {
 
   private static final ServiceCache serviceCache = new ServiceCache();
 
-  private ServiceLocator() {
-  }
+  private ServiceLocator() {}
 
   /**
    * Fetch the service with the name param from the cache first, if no service is found, lookup the
@@ -46,9 +44,7 @@ public final class ServiceLocator {
    */
   public static Service getService(String serviceJndiName) {
     var serviceObj = serviceCache.getService(serviceJndiName);
-    if (serviceObj != null) {
-      return serviceObj;
-    } else {
+    if (serviceObj == null) {
       /*
        * If we are unable to retrieve anything from cache, then lookup the service and add it in the
        * cache map
@@ -58,7 +54,7 @@ public final class ServiceLocator {
       if (serviceObj != null) { // Only cache a service if it actually exists
         serviceCache.addService(serviceObj);
       }
-      return serviceObj;
     }
+    return serviceObj;
   }
 }

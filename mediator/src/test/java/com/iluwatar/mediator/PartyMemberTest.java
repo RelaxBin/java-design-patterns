@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.mediator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,56 +42,47 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.LoggerFactory;
 
-/**
- * Date: 12/19/15 - 10:13 PM
- *
- * @author Jeroen Meulemeester
- */
-public class PartyMemberTest {
+/** PartyMemberTest */
+class PartyMemberTest {
 
   static Stream<Arguments> dataProvider() {
     return Stream.of(
         Arguments.of((Supplier<PartyMember>) Hobbit::new),
         Arguments.of((Supplier<PartyMember>) Hunter::new),
         Arguments.of((Supplier<PartyMember>) Rogue::new),
-        Arguments.of((Supplier<PartyMember>) Wizard::new)
-    );
+        Arguments.of((Supplier<PartyMember>) Wizard::new));
   }
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(PartyMemberBase.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
-  /**
-   * Verify if a party action triggers the correct output to the std-Out
-   */
+  /** Verify if a party action triggers the correct output to the std-Out */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testPartyAction(Supplier<PartyMember> memberSupplier) {
+  void testPartyAction(Supplier<PartyMember> memberSupplier) {
     final var member = memberSupplier.get();
 
     for (final var action : Action.values()) {
       member.partyAction(action);
-      assertEquals(member.toString() + " " + action.getDescription(), appender.getLastMessage());
+      assertEquals(member + " " + action.getDescription(), appender.getLastMessage());
     }
 
     assertEquals(Action.values().length, appender.getLogSize());
   }
 
-  /**
-   * Verify if a member action triggers the expected interactions with the party class
-   */
+  /** Verify if a member action triggers the expected interactions with the party class */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testAct(Supplier<PartyMember> memberSupplier) {
+  void testAct(Supplier<PartyMember> memberSupplier) {
     final var member = memberSupplier.get();
 
     member.act(Action.GOLD);
@@ -98,23 +90,21 @@ public class PartyMemberTest {
 
     final var party = mock(Party.class);
     member.joinedParty(party);
-    assertEquals(member.toString() + " joins the party", appender.getLastMessage());
+    assertEquals(member + " joins the party", appender.getLastMessage());
 
     for (final var action : Action.values()) {
       member.act(action);
-      assertEquals(member.toString() + " " + action.toString(), appender.getLastMessage());
+      assertEquals(member + " " + action.toString(), appender.getLastMessage());
       verify(party).act(member, action);
     }
 
     assertEquals(Action.values().length + 1, appender.getLogSize());
   }
 
-  /**
-   * Verify if {@link PartyMemberBase#toString()} generate the expected output
-   */
+  /** Verify if {@link PartyMemberBase#toString()} generate the expected output */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testToString(Supplier<PartyMember> memberSupplier) {
+  void testToString(Supplier<PartyMember> memberSupplier) {
     final var member = memberSupplier.get();
     final var memberClass = member.getClass();
     assertEquals(memberClass.getSimpleName(), member.toString());
@@ -141,6 +131,4 @@ public class PartyMemberTest {
       return log.get(log.size() - 1).getFormattedMessage();
     }
   }
-
-
 }

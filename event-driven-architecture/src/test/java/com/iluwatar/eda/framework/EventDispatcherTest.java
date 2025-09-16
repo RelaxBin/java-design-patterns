@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.eda.framework;
 
 import static org.mockito.Mockito.spy;
@@ -33,9 +34,7 @@ import com.iluwatar.eda.handler.UserUpdatedEventHandler;
 import com.iluwatar.eda.model.User;
 import org.junit.jupiter.api.Test;
 
-/**
- * Event Dispatcher unit tests to assert and verify correct event dispatcher behaviour
- */
+/** Event Dispatcher unit tests to assert and verify correct event dispatcher behaviour */
 class EventDispatcherTest {
 
   /**
@@ -56,15 +55,14 @@ class EventDispatcherTest {
     var userCreatedEvent = new UserCreatedEvent(user);
     var userUpdatedEvent = new UserUpdatedEvent(user);
 
-    //fire a userCreatedEvent and verify that userCreatedEventHandler has been invoked.
+    // fire a userCreatedEvent and verify that userCreatedEventHandler has been invoked.
     dispatcher.dispatch(userCreatedEvent);
     verify(userCreatedEventHandler).onEvent(userCreatedEvent);
     verify(dispatcher).dispatch(userCreatedEvent);
 
-    //fire a userCreatedEvent and verify that userUpdatedEventHandler has been invoked.
+    // fire a userCreatedEvent and verify that userUpdatedEventHandler has been invoked.
     dispatcher.dispatch(userUpdatedEvent);
     verify(userUpdatedEventHandler).onEvent(userUpdatedEvent);
     verify(dispatcher).dispatch(userUpdatedEvent);
   }
-
 }

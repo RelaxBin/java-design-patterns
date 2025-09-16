@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,32 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.strangler;
 
 import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Source under development. Replace part of old source and has added some new features.
- */
+/** Source under development. Replace part of old source and has added some new features. */
 @Slf4j
 public class HalfSource {
   private static final String VERSION = "1.5";
 
-  /**
-   * Implement accumulate sum with new technique.
-   * Replace old one in {@link OldSource}
-   */
+  /** Implement accumulate sum with new technique. Replace old one in {@link OldSource} */
   public int accumulateSum(int... nums) {
     LOGGER.info("Source module {}", VERSION);
     return Arrays.stream(nums).reduce(0, Integer::sum);
   }
 
-  /**
-   * Check if all number is not zero.
-   * New feature.
-   */
+  /** Check if all number is not zero. New feature. */
   public boolean ifNonZero(int... nums) {
     LOGGER.info("Source module {}", VERSION);
     return Arrays.stream(nums).allMatch(num -> num != 0);

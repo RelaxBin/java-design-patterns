@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.poison.pill;
 
 import java.util.Map;
@@ -31,44 +32,43 @@ import java.util.Map;
  */
 public interface Message {
 
-  Message POISON_PILL = new Message() {
+  Message POISON_PILL =
+      new Message() {
 
-    @Override
-    public void addHeader(Headers header, String value) {
-      throw poison();
-    }
+        @Override
+        public void addHeader(Headers header, String value) {
+          throw poison();
+        }
 
-    @Override
-    public String getHeader(Headers header) {
-      throw poison();
-    }
+        @Override
+        public String getHeader(Headers header) {
+          throw poison();
+        }
 
-    @Override
-    public Map<Headers, String> getHeaders() {
-      throw poison();
-    }
+        @Override
+        public Map<Headers, String> getHeaders() {
+          throw poison();
+        }
 
-    @Override
-    public void setBody(String body) {
-      throw poison();
-    }
+        @Override
+        public void setBody(String body) {
+          throw poison();
+        }
 
-    @Override
-    public String getBody() {
-      throw poison();
-    }
+        @Override
+        public String getBody() {
+          throw poison();
+        }
 
-    private RuntimeException poison() {
-      return new UnsupportedOperationException("Poison");
-    }
+        private RuntimeException poison() {
+          return new UnsupportedOperationException("Poison");
+        }
+      };
 
-  };
-
-  /**
-   * Enumeration of Type of Headers.
-   */
+  /** Enumeration of Type of Headers. */
   enum Headers {
-    DATE, SENDER
+    DATE,
+    SENDER
   }
 
   void addHeader(Headers header, String value);

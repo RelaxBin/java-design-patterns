@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.specification.selector;
 
 import java.util.List;
 
-/**
- * A Selector defined as the conjunction (AND) of other (leaf) selectors.
- */
+/** A Selector defined as the conjunction (AND) of other (leaf) selectors. */
 public class ConjunctionSelector<T> extends AbstractSelector<T> {
 
   private final List<AbstractSelector<T>> leafComponents;
@@ -37,9 +36,7 @@ public class ConjunctionSelector<T> extends AbstractSelector<T> {
     this.leafComponents = List.of(selectors);
   }
 
-  /**
-   * Tests if *all* selectors pass the test.
-   */
+  /** Tests if *all* selectors pass the test. */
   @Override
   public boolean test(T t) {
     return leafComponents.stream().allMatch(comp -> (comp.test(t)));

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,37 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.singleton;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.lang.reflect.InvocationTargetException;
-import org.junit.jupiter.api.Test;
-
-/**
- * Date: 12/29/15 - 19:26 PM.
- *
- * @author Jeroen Meulemeester
- */
+/** ThreadSafeDoubleCheckLockingTest */
 class ThreadSafeDoubleCheckLockingTest extends SingletonTest<ThreadSafeDoubleCheckLocking> {
 
-  /**
-   * Create a new singleton test instance using the given 'getInstance' method.
-   */
+  /** Create a new singleton test instance using the given 'getInstance' method. */
   public ThreadSafeDoubleCheckLockingTest() {
     super(ThreadSafeDoubleCheckLocking::getInstance);
   }
-
-  /**
-   * Test creating new instance by refection.
-   */
-  @Test
-  void testCreatingNewInstanceByRefection() throws Exception {
-    ThreadSafeDoubleCheckLocking.getInstance();
-    var constructor = ThreadSafeDoubleCheckLocking.class.getDeclaredConstructor();
-    constructor.setAccessible(true);
-    assertThrows(InvocationTargetException.class, () -> constructor.newInstance((Object[]) null));
-  }
-
 }

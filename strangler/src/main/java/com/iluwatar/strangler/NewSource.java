@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.strangler;
 
 import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * New source. Completely covers functionalities of old source with new techniques
- * and also has some new features.
+ * New source. Completely covers functionalities of old source with new techniques and also has some
+ * new features.
  */
 @Slf4j
 public class NewSource {
@@ -40,10 +41,7 @@ public class NewSource {
     return Arrays.stream(nums).reduce(0, Integer::sum);
   }
 
-  /**
-   * Implement accumulate multiply with new technique.
-   * Replace old one in {@link OldSource}
-   */
+  /** Implement accumulate multiply with new technique. Replace old one in {@link OldSource} */
   public int accumulateMul(int... nums) {
     LOGGER.info(SOURCE_MODULE, VERSION);
     return Arrays.stream(nums).reduce(1, (a, b) -> a * b);

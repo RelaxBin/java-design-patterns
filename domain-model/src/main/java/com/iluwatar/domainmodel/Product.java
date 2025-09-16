@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.domainmodel;
 
 import static org.joda.money.CurrencyUnit.USD;
@@ -30,7 +31,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,9 +40,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.joda.money.Money;
 
 /**
- * This class organizes domain logic of product.
- * A single instance of this class
- * contains both the data and behavior of a single product.
+ * This class organizes domain logic of product. A single instance of this class contains both the
+ * data and behavior of a single product.
  */
 @Slf4j
 @Getter
@@ -59,9 +58,7 @@ public class Product {
   @NonNull private Money price;
   @NonNull private LocalDate expirationDate;
 
-  /**
-   * Save product or update if product already exist.
-   */
+  /** Save product or update if product already exist. */
   public void save() {
     try {
       Optional<Product> product = productDao.findByName(name);
@@ -75,16 +72,14 @@ public class Product {
     }
   }
 
-  /**
-   * Calculate sale price of product with discount.
-   */
+  /** Calculate sale price of product with discount. */
   public Money getSalePrice() {
     return price.minus(calculateDiscount());
   }
 
   private Money calculateDiscount() {
     if (ChronoUnit.DAYS.between(LocalDate.now(), expirationDate)
-            < DAYS_UNTIL_EXPIRATION_WHEN_DISCOUNT_ACTIVE) {
+        < DAYS_UNTIL_EXPIRATION_WHEN_DISCOUNT_ACTIVE) {
 
       return price.multipliedBy(DISCOUNT_RATE, RoundingMode.DOWN);
     }

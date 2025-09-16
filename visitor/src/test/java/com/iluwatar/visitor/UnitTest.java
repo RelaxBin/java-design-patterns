@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,10 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.visitor;
 
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -33,16 +34,13 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:59 PM. Test related to Units
+ * Test related to Units
  *
  * @param <U> Type of Unit
- * @author Jeroen Meulemeester
  */
 public abstract class UnitTest<U extends Unit> {
 
-  /**
-   * Factory to create new instances of the tested unit.
-   */
+  /** Factory to create new instances of the tested unit. */
   private final Function<Unit[], U> factory;
 
   /**
@@ -73,9 +71,8 @@ public abstract class UnitTest<U extends Unit> {
   /**
    * Verify if the correct visit method is called on the mock, depending on the tested instance.
    *
-   * @param unit          The tested unit instance
+   * @param unit The tested unit instance
    * @param mockedVisitor The mocked {@link UnitVisitor} who should have gotten a visit by the unit
    */
   abstract void verifyVisit(final U unit, final UnitVisitor mockedVisitor);
-
 }

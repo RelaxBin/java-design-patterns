@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -79,17 +80,18 @@ class CommandTest {
    * This method asserts that the passed goblin object has the name as expectedName, size as
    * expectedSize and visibility as expectedVisibility.
    *
-   * @param goblin             a goblin object whose state is to be verified against other
-   *                           parameters
-   * @param expectedName       expectedName of the goblin
-   * @param expectedSize       expected size of the goblin
+   * @param goblin a goblin object whose state is to be verified against other parameters
+   * @param expectedName expectedName of the goblin
+   * @param expectedSize expected size of the goblin
    * @param expectedVisibility expected visibility of the goblin
    */
-  private void verifyGoblin(Goblin goblin, String expectedName, Size expectedSize,
-                            Visibility expectedVisibility) {
+  private void verifyGoblin(
+      Goblin goblin, String expectedName, Size expectedSize, Visibility expectedVisibility) {
     assertEquals(expectedName, goblin.toString(), "Goblin's name must be same as expectedName");
     assertEquals(expectedSize, goblin.getSize(), "Goblin's size must be same as expectedSize");
-    assertEquals(expectedVisibility, goblin.getVisibility(),
+    assertEquals(
+        expectedVisibility,
+        goblin.getVisibility(),
         "Goblin's visibility must be same as expectedVisibility");
   }
 }

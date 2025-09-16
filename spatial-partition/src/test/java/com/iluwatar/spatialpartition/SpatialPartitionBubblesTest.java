@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.spatialpartition;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -29,10 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
-/**
- * Testing SpatialPartition_Bubbles class.
- */
-
+/** Testing SpatialPartition_Bubbles class. */
 class SpatialPartitionBubblesTest {
 
   @Test
@@ -54,7 +52,7 @@ class SpatialPartitionBubblesTest {
     qt.insert(b4);
     var sp = new SpatialPartitionBubbles(bubbles, qt);
     sp.handleCollisionsUsingQt(b1);
-    //b1 touches b3 and b4 but not b2 - so b1,b3,b4 get popped
+    // b1 touches b3 and b4 but not b2 - so b1,b3,b4 get popped
     assertNull(bubbles.get(1));
     assertNotNull(bubbles.get(2));
     assertNull(bubbles.get(3));

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.updatemethod;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This pattern simulate a collection of independent objects by telling each to
- * process one frame of behavior at a time. The game world maintains a collection
- * of objects. Each object implements an update method that simulates one frame of
- * the object’s behavior. Each frame, the game updates every object in the collection.
+ * This pattern simulate a collection of independent objects by telling each to process one frame of
+ * behavior at a time. The game world maintains a collection of objects. Each object implements an
+ * update method that simulates one frame of the object’s behavior. Each frame, the game updates
+ * every object in the collection.
  */
 @Slf4j
 public class App {
@@ -38,6 +39,7 @@ public class App {
 
   /**
    * Program entry point.
+   *
    * @param args runtime arguments
    */
   public static void main(String[] args) {

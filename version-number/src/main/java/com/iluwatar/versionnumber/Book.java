@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,59 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.versionnumber;
 
+import lombok.Getter;
+import lombok.Setter;
+
+/** Model class for Book entity. */
+@Getter
+@Setter
 public class Book {
   private long id;
   private String title = "";
   private String author = "";
-
   private long version = 0; // version number
 
-  public Book() {
+  public Book() {}
 
-  }
-
-  /**
-   * We need this copy constructor to copy book representation in {@link BookRepository}.
-   */
+  /** We need this copy constructor to copy book representation in {@link BookRepository}. */
   public Book(Book book) {
     this.id = book.id;
     this.title = book.title;
     this.author = book.author;
     this.version = book.version;
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public long getVersion() {
-    return version;
-  }
-
-  public void setVersion(long version) {
-    this.version = version;
   }
 }

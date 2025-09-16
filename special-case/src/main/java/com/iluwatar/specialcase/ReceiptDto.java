@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,28 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.specialcase;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/** Receipt view representing the transaction recceipt. */
+@RequiredArgsConstructor
+@Getter
 public class ReceiptDto implements ReceiptViewModel {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptDto.class);
 
-  private Double price;
-
-  public ReceiptDto(Double price) {
-    this.price = price;
-  }
-
-  public Double getPrice() {
-    return price;
-  }
+  private final Double price;
 
   @Override
   public void show() {
-    LOGGER.info("Receipt: " + price + " paid");
+    LOGGER.info(String.format("Receipt: %s paid", price));
   }
 }

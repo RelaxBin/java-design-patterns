@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.poison.pill;
 
 import com.iluwatar.poison.pill.Message.Headers;
@@ -38,22 +39,19 @@ public class Producer {
   private final String name;
   private boolean isStopped;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Producer(String name, MqPublishPoint queue) {
     this.name = name;
     this.queue = queue;
     this.isStopped = false;
   }
 
-  /**
-   * Send message to queue.
-   */
+  /** Send message to queue. */
   public void send(String body) {
     if (isStopped) {
-      throw new IllegalStateException(String.format(
-          "Producer %s was stopped and fail to deliver requested message [%s].", body, name));
+      throw new IllegalStateException(
+          String.format(
+              "Producer %s was stopped and fail to deliver requested message [%s].", body, name));
     }
     var msg = new SimpleMessage();
     msg.addHeader(Headers.DATE, new Date().toString());
@@ -68,9 +66,7 @@ public class Producer {
     }
   }
 
-  /**
-   * Stop system by sending poison pill.
-   */
+  /** Stop system by sending poison pill. */
   public void stop() {
     isStopped = true;
     try {

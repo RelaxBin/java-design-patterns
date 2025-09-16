@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.guarded.suspension;
 
 import java.util.LinkedList;
@@ -32,7 +33,8 @@ import lombok.extern.slf4j.Slf4j;
  * used to handle a situation when you want to execute a method on an object which is not in a
  * proper state.
  *
- * @see <a href="http://java-design-patterns.com/patterns/guarded-suspension/">http://java-design-patterns.com/patterns/guarded-suspension/</a>
+ * @see <a
+ *     href="http://java-design-patterns.com/patterns/guarded-suspension/">http://java-design-patterns.com/patterns/guarded-suspension/</a>
  */
 @Slf4j
 public class GuardedQueue {
@@ -43,7 +45,7 @@ public class GuardedQueue {
   }
 
   /**
-   * Get the last element of the queue is exists.
+   * Get the last element of the queue if exists.
    *
    * @return last element of a queue if queue is not empty
    */
@@ -53,7 +55,7 @@ public class GuardedQueue {
         LOGGER.info("waiting");
         wait();
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        LOGGER.error("Error occurred: ", e);
       }
     }
     LOGGER.info("getting");

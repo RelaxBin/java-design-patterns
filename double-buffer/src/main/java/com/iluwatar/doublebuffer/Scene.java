@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.doublebuffer;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 
-/**
- * Scene class. Render the output frame.
- */
+/** Scene class. Render the output frame. */
 @Slf4j
 public class Scene {
 
@@ -39,9 +38,7 @@ public class Scene {
 
   private int next;
 
-  /**
-   * Constructor of Scene.
-   */
+  /** Constructor of Scene. */
   public Scene() {
     frameBuffers = new FrameBuffer[2];
     frameBuffers[0] = new FrameBuffer();
@@ -59,11 +56,12 @@ public class Scene {
     LOGGER.info("Start drawing next frame");
     LOGGER.info("Current buffer: " + current + " Next buffer: " + next);
     frameBuffers[next].clearAll();
-    coordinateList.forEach(coordinate -> {
-      var x = coordinate.getKey();
-      var y = coordinate.getValue();
-      frameBuffers[next].draw(x, y);
-    });
+    coordinateList.forEach(
+        coordinate -> {
+          var x = coordinate.getKey();
+          var y = coordinate.getValue();
+          frameBuffers[next].draw(x, y);
+        });
     LOGGER.info("Swap current and next buffer");
     swap();
     LOGGER.info("Finish swapping");
@@ -80,5 +78,4 @@ public class Scene {
     next = current ^ next;
     current = current ^ next;
   }
-
 }

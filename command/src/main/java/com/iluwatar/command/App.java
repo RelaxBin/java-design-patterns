@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.command;
 
 /**
@@ -31,9 +32,9 @@ package com.iluwatar.command;
  * <p>Four terms always associated with the command pattern are command, receiver, invoker and
  * client. A command object (spell) knows about the receiver (target) and invokes a method of the
  * receiver. An invoker object (wizard) receives a reference to the command to be executed and
- * optionally does bookkeeping about the command execution. The invoker does not know anything
- * about how the command is executed. The client decides which commands to execute at which
- * points. To execute a command, it passes a reference of the function to the invoker object.
+ * optionally does bookkeeping about the command execution. The invoker does not know anything about
+ * how the command is executed. The client decides which commands to execute at which points. To
+ * execute a command, it passes a reference of the function to the invoker object.
  *
  * <p>In other words, in this example the wizard casts spells on the goblin. The wizard keeps track
  * of the previous spells cast, so it is easy to undo them. In addition, the wizard keeps track of

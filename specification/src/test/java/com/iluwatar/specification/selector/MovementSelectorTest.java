@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.specification.selector;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -32,16 +33,10 @@ import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Movement;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/29/15 - 7:37 PM
- *
- * @author Jeroen Meulemeester
- */
-public class MovementSelectorTest {
+/** MovementSelectorTest */
+class MovementSelectorTest {
 
-  /**
-   * Verify if the movement selector gives the correct results.
-   */
+  /** Verify if the movement selector gives the correct results. */
   @Test
   void testMovement() {
     final var swimmingCreature = mock(Creature.class);
@@ -53,7 +48,5 @@ public class MovementSelectorTest {
     final var swimmingSelector = new MovementSelector(Movement.SWIMMING);
     assertTrue(swimmingSelector.test(swimmingCreature));
     assertFalse(swimmingSelector.test(flyingCreature));
-
   }
-
 }

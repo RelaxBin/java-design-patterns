@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.lockableobject;
 
 import com.iluwatar.lockableobject.domain.Creature;
@@ -38,14 +39,14 @@ class FeindTest {
   private Lockable sword;
 
   @BeforeEach
-  void init(){
+  void init() {
     elf = new Elf("Nagdil");
     orc = new Orc("Ghandar");
     sword = new SwordOfAragorn();
   }
 
   @Test
-  void nullTests(){
+  void nullTests() {
     Assertions.assertThrows(NullPointerException.class, () -> new Feind(null, null));
     Assertions.assertThrows(NullPointerException.class, () -> new Feind(elf, null));
     Assertions.assertThrows(NullPointerException.class, () -> new Feind(null, sword));
@@ -66,5 +67,4 @@ class FeindTest {
     sword.unlock(elf.isAlive() ? elf : orc);
     Assertions.assertNull(sword.getLocker());
   }
-
 }

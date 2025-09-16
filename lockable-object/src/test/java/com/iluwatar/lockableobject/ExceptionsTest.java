@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.lockableobject;
 
 import org.junit.jupiter.api.Assertions;
@@ -28,17 +29,16 @@ import org.junit.jupiter.api.Test;
 
 class ExceptionsTest {
 
-  private String msg = "test";
+  private static final String MSG = "test";
 
   @Test
-  void testException(){
+  void testException() {
     Exception e;
-    try{
-      throw new LockingException(msg);
-    }
-    catch(LockingException ex){
+    try {
+      throw new LockingException(MSG);
+    } catch (LockingException ex) {
       e = ex;
     }
-    Assertions.assertEquals(msg, e.getMessage());
+    Assertions.assertEquals(MSG, e.getMessage());
   }
 }

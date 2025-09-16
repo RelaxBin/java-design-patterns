@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.delegation.simple;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,9 +39,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * Test for Delegation Pattern
- */
+/** Test for Delegation Pattern */
 class DelegateTest {
 
   private InMemoryAppender appender;
@@ -58,7 +57,7 @@ class DelegateTest {
   private static final String MESSAGE = "Test Message Printed";
 
   @Test
-  void testCanonPrinter() throws Exception {
+  void testCanonPrinter() {
     var printerController = new PrinterController(new CanonPrinter());
     printerController.print(MESSAGE);
 
@@ -66,7 +65,7 @@ class DelegateTest {
   }
 
   @Test
-  void testHpPrinter() throws Exception {
+  void testHpPrinter() {
     var printerController = new PrinterController(new HpPrinter());
     printerController.print(MESSAGE);
 
@@ -74,16 +73,14 @@ class DelegateTest {
   }
 
   @Test
-  void testEpsonPrinter() throws Exception {
+  void testEpsonPrinter() {
     var printerController = new PrinterController(new EpsonPrinter());
     printerController.print(MESSAGE);
 
     assertEquals("Epson Printer : Test Message Printed", appender.getLastMessage());
   }
 
-  /**
-   * Logging Appender
-   */
+  /** Logging Appender */
   private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
     private final List<ILoggingEvent> log = new LinkedList<>();
@@ -106,5 +103,4 @@ class DelegateTest {
       return log.size();
     }
   }
-
 }

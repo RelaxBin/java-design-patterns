@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.servant;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -28,11 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/28/15 - 9:40 PM
- *
- * @author Jeroen Meulemeester
- */
+/** KingTest */
 class KingTest {
 
   @Test
@@ -102,5 +99,4 @@ class KingTest {
     king.changeMood();
     assertFalse(king.getMood());
   }
-
 }

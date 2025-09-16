@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,23 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.tolerantreader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/30/15 - 18:34 PM
- *
- * @author Jeroen Meulemeester
- */
+/** RainbowFishTest */
 class RainbowFishTest {
 
-  /**
-   * Verify if the getters of a {@link RainbowFish} return the expected values
-   */
+  /** Verify if the getters of a {@link RainbowFish} return the expected values */
   @Test
   void testValues() {
     final var fish = new RainbowFish("name", 1, 2, 3);
@@ -45,5 +40,4 @@ class RainbowFishTest {
     assertEquals(2, fish.getLengthMeters());
     assertEquals(3, fish.getWeightTons());
   }
-
 }

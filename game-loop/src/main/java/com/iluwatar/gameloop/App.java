@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.gameloop;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * A game loop runs continuously during gameplay. Each turn of the loop, it processes
- * user input without blocking, updates the game state, and renders the game. It tracks
- * the passage of time to control the rate of gameplay.
+ * A game loop runs continuously during gameplay. Each turn of the loop, it processes user input
+ * without blocking, updates the game state, and renders the game. It tracks the passage of time to
+ * control the rate of gameplay.
  */
 @Slf4j
 public class App {
 
-  /**
-   * Each type of game loop will run for 2 seconds.
-   */
+  /** Each type of game loop will run for 2 seconds. */
   private static final int GAME_LOOP_DURATION_TIME = 2000;
 
   /**
    * Program entry point.
+   *
    * @param args runtime arguments
    */
   public static void main(String[] args) {
@@ -70,5 +70,4 @@ public class App {
       LOGGER.error(e.getMessage());
     }
   }
-
 }

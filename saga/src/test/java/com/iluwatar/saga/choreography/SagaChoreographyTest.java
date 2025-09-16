@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.saga.choreography;
-
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * test to check choreography saga
- */
+import org.junit.jupiter.api.Test;
+
+/** test to check choreography saga */
 class SagaChoreographyTest {
 
   @Test
@@ -44,9 +43,9 @@ class SagaChoreographyTest {
   }
 
   private static Saga newSaga(Object value) {
-    return Saga
-        .create()
-        .chapter("init an order").setInValue(value)
+    return Saga.create()
+        .chapter("init an order")
+        .setInValue(value)
         .chapter("booking a Fly")
         .chapter("booking a Hotel")
         .chapter("withdrawing Money");
@@ -54,8 +53,7 @@ class SagaChoreographyTest {
 
   private static ServiceDiscoveryService serviceDiscovery() {
     var sd = new ServiceDiscoveryService();
-    return sd
-        .discover(new OrderService(sd))
+    return sd.discover(new OrderService(sd))
         .discover(new FlyBookingService(sd))
         .discover(new HotelBookingService(sd))
         .discover(new WithdrawMoneyService(sd));

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.converter;
 
-/**
- * Example implementation of the simple User converter.
- */
+/** Example implementation of the simple User converter. */
 public class UserConverter extends Converter<UserDto, User> {
 
   public UserConverter() {
@@ -33,11 +32,10 @@ public class UserConverter extends Converter<UserDto, User> {
   }
 
   private static UserDto convertToDto(User user) {
-    return new UserDto(user.getFirstName(), user.getLastName(), user.isActive(), user.getUserId());
+    return new UserDto(user.firstName(), user.lastName(), user.active(), user.userId());
   }
 
   private static User convertToEntity(UserDto dto) {
-    return new User(dto.getFirstName(), dto.getLastName(), dto.isActive(), dto.getEmail());
+    return new User(dto.firstName(), dto.lastName(), dto.active(), dto.email());
   }
-
 }

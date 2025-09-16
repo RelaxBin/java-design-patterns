@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.reactor.app;
 
 import java.io.IOException;
@@ -69,9 +70,7 @@ public class AppClient {
     service.execute(new UdpLoggingClient("Client 4", 16669));
   }
 
-  /**
-   * Stops logging clients. This is a blocking call.
-   */
+  /** Stops logging clients. This is a blocking call. */
   public void stop() {
     service.shutdown();
     if (!service.isTerminated()) {
@@ -93,9 +92,7 @@ public class AppClient {
     }
   }
 
-  /**
-   * A logging client that sends requests to Reactor on TCP socket.
-   */
+  /** A logging client that sends requests to Reactor on TCP socket. */
   static class TcpLoggingClient implements Runnable {
 
     private final int serverPort;
@@ -140,12 +137,9 @@ public class AppClient {
         artificialDelayOf(100);
       }
     }
-
   }
 
-  /**
-   * A logging client that sends requests to Reactor on UDP socket.
-   */
+  /** A logging client that sends requests to Reactor on UDP socket. */
   static class UdpLoggingClient implements Runnable {
     private final String clientName;
     private final InetSocketAddress remoteAddress;
@@ -154,7 +148,7 @@ public class AppClient {
      * Creates a new UDP logging client.
      *
      * @param clientName the name of the client to be sent in logging requests.
-     * @param port       the port on which client will send logging requests.
+     * @param port the port on which client will send logging requests.
      * @throws UnknownHostException if localhost is unknown
      */
     public UdpLoggingClient(String clientName, int port) throws UnknownHostException {

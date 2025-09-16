@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.proxy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,31 +33,29 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for {@link IvoryTower}
- */
+/** Tests for {@link IvoryTower} */
 class IvoryTowerTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(IvoryTower.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
   @Test
   void testEnter() {
-    final var wizards = List.of(
-        new Wizard("Gandalf"),
-        new Wizard("Dumbledore"),
-        new Wizard("Oz"),
-        new Wizard("Merlin")
-    );
+    final var wizards =
+        List.of(
+            new Wizard("Gandalf"),
+            new Wizard("Dumbledore"),
+            new Wizard("Oz"),
+            new Wizard("Merlin"));
 
     var tower = new IvoryTower();
     wizards.forEach(tower::enter);

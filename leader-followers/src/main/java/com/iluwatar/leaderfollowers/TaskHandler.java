@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,25 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.leaderfollowers;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * The TaskHandler is used by the {@link Worker} to process the newly arrived task.
- */
+/** The TaskHandler is used by the {@link Worker} to process the newly arrived task. */
 @Slf4j
 public class TaskHandler {
 
-  /**
-   * This interface handles one task at a time.
-   */
+  /** This interface handles one task at a time. */
   public void handleTask(Task task) throws InterruptedException {
     var time = task.getTime();
     Thread.sleep(time);
     LOGGER.info("It takes " + time + " milliseconds to finish the task");
-    task.setFinished();
+    task.setFinished(true);
   }
-
 }

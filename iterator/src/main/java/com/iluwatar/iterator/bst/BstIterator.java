@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.iterator.bst;
 
 import com.iluwatar.iterator.Iterator;
@@ -32,7 +33,7 @@ import java.util.NoSuchElementException;
  * expect to retrieve TreeNodes according to the Integer's natural ordering (1, 2, 3...)
  *
  * @param <T> This Iterator has been implemented with generic typing to allow for TreeNodes of
- *            different value types
+ *     different value types
  */
 public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T>> {
 
@@ -82,5 +83,4 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
     pushPathToNextSmallest(next.getRight());
     return next;
   }
-
 }

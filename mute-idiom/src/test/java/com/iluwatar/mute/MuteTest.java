@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.mute;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -29,11 +32,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-/**
- * Test for the mute-idiom pattern
- */
+/** Test for the mute-idiom pattern */
 class MuteTest {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MuteTest.class);
@@ -41,7 +40,8 @@ class MuteTest {
   private static final String MESSAGE = "should not occur";
 
   @Test
-  void muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
+  void
+      muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
     assertDoesNotThrow(() -> Mute.mute(this::methodNotThrowingAnyException));
   }
 
@@ -51,7 +51,8 @@ class MuteTest {
   }
 
   @Test
-  void loggedMuteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
+  void
+      loggedMuteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
     assertDoesNotThrow(() -> Mute.mute(this::methodNotThrowingAnyException));
   }
 
@@ -62,9 +63,8 @@ class MuteTest {
 
     Mute.loggedMute(this::methodThrowingException);
 
-    assertTrue(new String(stream.toByteArray()).contains(MESSAGE));
+    assertTrue(stream.toString().contains(MESSAGE));
   }
-
 
   private void methodNotThrowingAnyException() {
     LOGGER.info("Executed successfully");

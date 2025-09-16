@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.bytecode;
 
 import static com.iluwatar.bytecode.Instruction.*;
@@ -29,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test for {@link VirtualMachine}
- */
+/** Test for {@link VirtualMachine} */
 class VirtualMachineTest {
 
   @Test
@@ -54,7 +53,7 @@ class VirtualMachineTest {
     bytecode[0] = LITERAL.getIntValue();
     bytecode[1] = wizardNumber;
     bytecode[2] = LITERAL.getIntValue();
-    bytecode[3] = 50;                        // health amount
+    bytecode[3] = 50; // health amount
     bytecode[4] = SET_HEALTH.getIntValue();
 
     var vm = new VirtualMachine();
@@ -70,7 +69,7 @@ class VirtualMachineTest {
     bytecode[0] = LITERAL.getIntValue();
     bytecode[1] = wizardNumber;
     bytecode[2] = LITERAL.getIntValue();
-    bytecode[3] = 50;                        // agility amount
+    bytecode[3] = 50; // agility amount
     bytecode[4] = SET_AGILITY.getIntValue();
 
     var vm = new VirtualMachine();
@@ -86,7 +85,7 @@ class VirtualMachineTest {
     bytecode[0] = LITERAL.getIntValue();
     bytecode[1] = wizardNumber;
     bytecode[2] = LITERAL.getIntValue();
-    bytecode[3] = 50;                        // wisdom amount
+    bytecode[3] = 50; // wisdom amount
     bytecode[4] = SET_WISDOM.getIntValue();
 
     var vm = new VirtualMachine();
@@ -102,7 +101,7 @@ class VirtualMachineTest {
     bytecode[0] = LITERAL.getIntValue();
     bytecode[1] = wizardNumber;
     bytecode[2] = LITERAL.getIntValue();
-    bytecode[3] = 50;                        // health amount
+    bytecode[3] = 50; // health amount
     bytecode[4] = SET_HEALTH.getIntValue();
     bytecode[5] = LITERAL.getIntValue();
     bytecode[6] = wizardNumber;

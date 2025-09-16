@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.leaderelection.ring;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,10 +36,8 @@ import java.util.Map;
 import java.util.Queue;
 import org.junit.jupiter.api.Test;
 
-/**
- * RingMessageManager unit test.
- */
-public class RingMessageManagerTest {
+/** RingMessageManager unit test. */
+class RingMessageManagerTest {
 
   @Test
   void testSendHeartbeatMessage() {
@@ -111,5 +110,4 @@ public class RingMessageManagerTest {
       fail("Error to access private field.");
     }
   }
-
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,43 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.leaderelection;
 
-/**
- * Message Type enum.
- */
+/** Message Type enum. */
 public enum MessageType {
 
-  /**
-   * Start the election. The content of the message stores ID(s) of the candidate instance(s).
-   */
+  /** Start the election. The content of the message stores ID(s) of the candidate instance(s). */
   ELECTION,
 
-  /**
-   * Nodify the new leader. The content of the message should be the leader ID.
-   */
+  /** Nodify the new leader. The content of the message should be the leader ID. */
   LEADER,
 
-  /**
-   * Check health of current leader instance.
-   */
+  /** Check health of current leader instance. */
   HEARTBEAT,
 
-  /**
-   * Inform target instance to start election.
-   */
+  /** Inform target instance to start election. */
   ELECTION_INVOKE,
 
-  /**
-   * Inform target instance to notify all the other instance that it is the new leader.
-   */
+  /** Inform target instance to notify all the other instance that it is the new leader. */
   LEADER_INVOKE,
 
-  /**
-   * Inform target instance to start heartbeat.
-   */
+  /** Inform target instance to start heartbeat. */
   HEARTBEAT_INVOKE
-
 }
-

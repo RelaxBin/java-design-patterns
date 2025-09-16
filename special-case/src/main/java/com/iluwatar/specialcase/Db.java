@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.specialcase;
 
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+/** DB class for seeding user info. */
 public class Db {
 
   private static Db instance;
@@ -112,30 +116,24 @@ public class Db {
     return itemName2Product.get(itemName);
   }
 
+  /** User class to store user info. */
+  @RequiredArgsConstructor
+  @Getter
   public class User {
 
-    private String userName;
-
-    public User(String userName) {
-      this.userName = userName;
-    }
-
-    public String getUserName() {
-      return userName;
-    }
+    private final String userName;
 
     public ReceiptDto purchase(Product item) {
       return new ReceiptDto(item.getPrice());
     }
   }
 
-  public class Account {
+  /** Account info. */
+  @RequiredArgsConstructor
+  @Getter
+  public static class Account {
 
-    private Double amount;
-
-    public Account(Double amount) {
-      this.amount = amount;
-    }
+    private final Double amount;
 
     /**
      * Withdraw the price of the item from the account.
@@ -149,22 +147,13 @@ public class Db {
       }
       return new MoneyTransaction(amount, price);
     }
-
-    public Double getAmount() {
-      return amount;
-    }
   }
 
-  public class Product {
+  /** Product info. */
+  @RequiredArgsConstructor
+  @Getter
+  public static class Product {
 
-    private Double price;
-
-    public Product(Double price) {
-      this.price = price;
-    }
-
-    public Double getPrice() {
-      return price;
-    }
+    private final Double price;
   }
 }

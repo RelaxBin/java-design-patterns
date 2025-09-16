@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.trampoline;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,26 +29,20 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Trampoline pattern allows to define recursive algorithms by iterative loop.
  *
- * <p>It is possible to implement algorithms recursively in Java without blowing the stack
- * and to interleave the execution of functions without hard coding them together or even using
- * threads.
+ * <p>It is possible to implement algorithms recursively in Java without blowing the stack and to
+ * interleave the execution of functions without hard coding them together or even using threads.
  */
 @Slf4j
 public class TrampolineApp {
 
-  /**
-   * Main program for showing pattern. It does loop with factorial function.
-   */
+  /** Main program for showing pattern. It does loop with factorial function. */
   public static void main(String[] args) {
     LOGGER.info("Start calculating war casualties");
     var result = loop(10, 1).result();
     LOGGER.info("The number of orcs perished in the war: {}", result);
-
   }
 
-  /**
-   * Manager for pattern. Define it with a factorial function.
-   */
+  /** Manager for pattern. Define it with a factorial function. */
   public static Trampoline<Integer> loop(int times, int prod) {
     if (times == 0) {
       return Trampoline.done(prod);

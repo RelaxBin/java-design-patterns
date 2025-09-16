@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,43 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.flyweight;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * AlchemistShop holds potions on its shelves. It uses PotionFactory to provide the potions.
- */
+/** AlchemistShop holds potions on its shelves. It uses PotionFactory to provide the potions. */
 @Slf4j
 public class AlchemistShop {
 
   private final List<Potion> topShelf;
   private final List<Potion> bottomShelf;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public AlchemistShop() {
     var factory = new PotionFactory();
-    topShelf = List.of(
-        factory.createPotion(PotionType.INVISIBILITY),
-        factory.createPotion(PotionType.INVISIBILITY),
-        factory.createPotion(PotionType.STRENGTH),
-        factory.createPotion(PotionType.HEALING),
-        factory.createPotion(PotionType.INVISIBILITY),
-        factory.createPotion(PotionType.STRENGTH),
-        factory.createPotion(PotionType.HEALING),
-        factory.createPotion(PotionType.HEALING)
-    );
-    bottomShelf = List.of(
-        factory.createPotion(PotionType.POISON),
-        factory.createPotion(PotionType.POISON),
-        factory.createPotion(PotionType.POISON),
-        factory.createPotion(PotionType.HOLY_WATER),
-        factory.createPotion(PotionType.HOLY_WATER)
-    );
+    topShelf =
+        List.of(
+            factory.createPotion(PotionType.INVISIBILITY),
+            factory.createPotion(PotionType.INVISIBILITY),
+            factory.createPotion(PotionType.STRENGTH),
+            factory.createPotion(PotionType.HEALING),
+            factory.createPotion(PotionType.INVISIBILITY),
+            factory.createPotion(PotionType.STRENGTH),
+            factory.createPotion(PotionType.HEALING),
+            factory.createPotion(PotionType.HEALING));
+    bottomShelf =
+        List.of(
+            factory.createPotion(PotionType.POISON),
+            factory.createPotion(PotionType.POISON),
+            factory.createPotion(PotionType.POISON),
+            factory.createPotion(PotionType.HOLY_WATER),
+            factory.createPotion(PotionType.HOLY_WATER));
   }
 
   /**
@@ -77,9 +74,7 @@ public class AlchemistShop {
     return List.copyOf(this.bottomShelf);
   }
 
-  /**
-   * Drink all the potions.
-   */
+  /** Drink all the potions. */
   public void drinkPotions() {
     LOGGER.info("Drinking top shelf potions");
     topShelf.forEach(Potion::drink);

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,41 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.pageobject;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.gargoylesoftware.htmlunit.WebClient;
 import com.iluwatar.pageobject.pages.AlbumPage;
+import org.htmlunit.WebClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test Album Page Operations
- */
-public class AlbumPageTest {
+/** Test Album Page Operations */
+class AlbumPageTest {
 
   private final AlbumPage albumPage = new AlbumPage(new WebClient());
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     albumPage.navigateToPage();
   }
 
   @Test
   void testSaveAlbum() {
 
-    var albumPageAfterChanges = albumPage
-        .changeAlbumTitle("25")
-        .changeArtist("Adele Laurie Blue Adkins")
-        .changeAlbumYear(2015)
-        .changeAlbumRating("B")
-        .changeNumberOfSongs(20)
-        .saveChanges();
+    var albumPageAfterChanges =
+        albumPage
+            .changeAlbumTitle("25")
+            .changeArtist("Adele Laurie Blue Adkins")
+            .changeAlbumYear(2015)
+            .changeAlbumRating("B")
+            .changeNumberOfSongs(20)
+            .saveChanges();
 
     assertTrue(albumPageAfterChanges.isAt());
-
   }
 
   @Test
@@ -63,5 +62,4 @@ public class AlbumPageTest {
     albumListPage.navigateToPage();
     assertTrue(albumListPage.isAt());
   }
-
 }

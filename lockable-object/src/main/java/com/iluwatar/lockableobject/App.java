@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.lockableobject;
 
 import com.iluwatar.lockableobject.domain.Creature;
@@ -41,13 +42,11 @@ import lombok.extern.slf4j.Slf4j;
  * the request.
  *
  * <p>In this example, we create a new Lockable object with the SwordOfAragorn implementation of it.
- * Afterwards we create 6 Creatures with the Elf, Orc and Human implementations and assign them each
- * to a Fiend object and the Sword is the target object. Because there is only one Sword and it uses
- * the Lockable Object pattern, only one creature can hold the sword at a given time. When the sword
- * is locked, any other alive Fiends will try to lock, which will result in a race to lock the
+ * Afterward we create 6 Creatures with the Elf, Orc and Human implementations and assign them each
+ * to a Fiend object and the Sword is the target object. Because there is only one Sword, and it
+ * uses the Lockable Object pattern, only one creature can hold the sword at a given time. When the
+ * sword is locked, any other alive Fiends will try to lock, which will result in a race to lock the
  * sword.
- *
- * @author Noam Greenshtain
  */
 @Slf4j
 public class App implements Runnable {

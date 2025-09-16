@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.compositeentity;
 
 import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
-
 
 /**
  * Composite entity is a Java EE Software design pattern and it is used to model, represent, and
@@ -35,10 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-
-  /**
-   * An instance that a console manages two related objects.
-   */
+  /** An instance that a console manages two related objects. */
   public App(String message, String signal) {
     var console = new CompositeEntity();
     console.init();
@@ -56,6 +53,5 @@ public class App {
   public static void main(String[] args) {
 
     new App("No Danger", "Green Light");
-
   }
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.transactionscript;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -29,90 +30,85 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import javax.sql.DataSource;
+import lombok.SneakyThrows;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests {@link Hotel}
- */
+/** Tests {@link Hotel} */
 class HotelTest {
 
-  private static final String H2_DB_URL = "jdbc:h2:~/test";
+  private static final String H2_DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
 
   private Hotel hotel;
   private HotelDaoImpl dao;
 
   @BeforeEach
-  public void setUp() throws Exception {
+  void setUp() throws Exception {
     final var dataSource = createDataSource();
     deleteSchema(dataSource);
     createSchema(dataSource);
     dao = new HotelDaoImpl(dataSource);
     addRooms(dao);
     hotel = new Hotel(dao);
-
   }
 
   @Test
   void bookingRoomShouldChangeBookedStatusToTrue() throws Exception {
     hotel.bookRoom(1);
+    assertTrue(dao.getById(1).isPresent());
     assertTrue(dao.getById(1).get().isBooked());
   }
 
-  @Test()
+  @Test
   void bookingRoomWithInvalidIdShouldRaiseException() {
-    assertThrows(Exception.class, () -> {
-      hotel.bookRoom(getNonExistingRoomId());
-    });
+    assertThrows(Exception.class, () -> hotel.bookRoom(getNonExistingRoomId()));
   }
 
-  @Test()
+  @Test
+  @SneakyThrows
   void bookingRoomAgainShouldRaiseException() {
-    assertThrows(Exception.class, () -> {
-      hotel.bookRoom(1);
-      hotel.bookRoom(1);
-    });
+    hotel.bookRoom(1);
+    assertThrows(Exception.class, () -> hotel.bookRoom(1), "Room already booked!");
   }
 
   @Test
   void NotBookingRoomShouldNotChangeBookedStatus() throws Exception {
+    assertTrue(dao.getById(1).isPresent());
     assertFalse(dao.getById(1).get().isBooked());
   }
 
   @Test
   void cancelRoomBookingShouldChangeBookedStatus() throws Exception {
     hotel.bookRoom(1);
+    assertTrue(dao.getById(1).isPresent());
     assertTrue(dao.getById(1).get().isBooked());
+
     hotel.cancelRoomBooking(1);
+    assertTrue(dao.getById(1).isPresent());
     assertFalse(dao.getById(1).get().isBooked());
   }
 
   @Test
   void cancelRoomBookingWithInvalidIdShouldRaiseException() {
-    assertThrows(Exception.class, () -> {
-      hotel.cancelRoomBooking(getNonExistingRoomId());
-    });
+    assertThrows(Exception.class, () -> hotel.cancelRoomBooking(getNonExistingRoomId()));
   }
 
   @Test
   void cancelRoomBookingForUnbookedRoomShouldRaiseException() {
-    assertThrows(Exception.class, () -> {
-      hotel.cancelRoomBooking(1);
-    });
+    assertThrows(Exception.class, () -> hotel.cancelRoomBooking(1));
   }
-
 
   private static void deleteSchema(DataSource dataSource) throws java.sql.SQLException {
     try (var connection = dataSource.getConnection();
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.DELETE_SCHEMA_SQL);
     }
   }
 
   private static void createSchema(DataSource dataSource) throws Exception {
     try (var connection = dataSource.getConnection();
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.CREATE_SCHEMA_SQL);
     } catch (Exception e) {
       throw new Exception(e.getMessage(), e);

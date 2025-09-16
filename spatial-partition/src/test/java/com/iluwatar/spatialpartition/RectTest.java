@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.spatialpartition;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -28,10 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Testing Rect class.
- */
-
+/** Testing Rect class. */
 class RectTest {
 
   @Test
@@ -39,7 +37,7 @@ class RectTest {
     var r = new Rect(10, 10, 20, 20);
     var b1 = new Bubble(2, 2, 1, 1);
     var b2 = new Bubble(30, 30, 2, 1);
-    //r contains b1 and not b2
+    // r contains b1 and not b2
     assertTrue(r.contains(b1));
     assertFalse(r.contains(b2));
   }
@@ -49,7 +47,7 @@ class RectTest {
     var r1 = new Rect(10, 10, 20, 20);
     var r2 = new Rect(15, 15, 20, 20);
     var r3 = new Rect(50, 50, 20, 20);
-    //r1 intersects r2 and not r3
+    // r1 intersects r2 and not r3
     assertTrue(r1.intersects(r2));
     assertFalse(r1.intersects(r3));
   }

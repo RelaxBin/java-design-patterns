@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.promise;
 
 import java.io.BufferedReader;
@@ -38,9 +39,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Utility to perform various operations.
- */
+/** Utility to perform various operations. */
 @Slf4j
 public class Utility {
 
@@ -52,12 +51,13 @@ public class Utility {
    */
   public static Map<Character, Long> characterFrequency(String fileLocation) {
     try (var bufferedReader = new BufferedReader(new FileReader(fileLocation))) {
-      return bufferedReader.lines()
+      return bufferedReader
+          .lines()
           .flatMapToInt(String::chars)
           .mapToObj(x -> (char) x)
           .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     } catch (IOException ex) {
-      ex.printStackTrace();
+      LOGGER.error("An error occurred: ", ex);
     }
     return Collections.emptyMap();
   }
@@ -68,9 +68,7 @@ public class Utility {
    * @return the character, {@code Optional.empty()} otherwise.
    */
   public static Character lowestFrequencyChar(Map<Character, Long> charFrequency) {
-    return charFrequency
-        .entrySet()
-        .stream()
+    return charFrequency.entrySet().stream()
         .min(Comparator.comparingLong(Entry::getValue))
         .map(Entry::getKey)
         .orElseThrow();
@@ -85,7 +83,7 @@ public class Utility {
     try (var bufferedReader = new BufferedReader(new FileReader(fileLocation))) {
       return (int) bufferedReader.lines().count();
     } catch (IOException ex) {
-      ex.printStackTrace();
+      LOGGER.error("An error occurred: ", ex);
     }
     return 0;
   }
@@ -100,7 +98,7 @@ public class Utility {
     var url = new URL(urlString);
     var file = File.createTempFile("promise_pattern", null);
     try (var bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
-         var writer = new FileWriter(file)) {
+        var writer = new FileWriter(file)) {
       String line;
       while ((line = bufferedReader.readLine()) != null) {
         writer.write(line);

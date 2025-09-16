@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.doublechecked.locking;
 
 import java.util.ArrayList;
@@ -29,9 +30,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Inventory.
- */
+/** Inventory. */
 @Slf4j
 public class Inventory {
 
@@ -39,18 +38,14 @@ public class Inventory {
   private final List<Item> items;
   private final Lock lock;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Inventory(int inventorySize) {
     this.inventorySize = inventorySize;
     this.items = new ArrayList<>(inventorySize);
     this.lock = new ReentrantLock();
   }
 
-  /**
-   * Add item.
-   */
+  /** Add item. */
   public boolean addItem(Item item) {
     if (items.size() < inventorySize) {
       lock.lock();
@@ -76,5 +71,4 @@ public class Inventory {
   public final List<Item> getItems() {
     return List.copyOf(items);
   }
-
 }

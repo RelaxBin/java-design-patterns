@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.gameloop;
 
 /**
- * For fixed-step game loop, a certain amount of real time has elapsed since the
- * last turn of the game loop. This is how much game time need to be simulated for
- * the game’s “now” to catch up with the player’s.
+ * For fixed-step game loop, a certain amount of real time has elapsed since the last turn of the
+ * game loop. This is how much game time need to be simulated for the game’s “now” to catch up with
+ * the player’s.
  */
 public class FixedStepGameLoop extends GameLoop {
 
-  /**
-   * 20 ms per frame = 50 FPS.
-   */
+  /** 20 ms per frame = 50 FPS. */
   private static final long MS_PER_FRAME = 20;
 
   @Override

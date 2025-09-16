@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.repository;
 
 import java.util.List;
@@ -53,15 +54,13 @@ public class AppConfig {
   public DataSource dataSource() {
     var basicDataSource = new BasicDataSource();
     basicDataSource.setDriverClassName("org.h2.Driver");
-    basicDataSource.setUrl("jdbc:h2:~/databases/person");
+    basicDataSource.setUrl("jdbc:h2:mem:databases-person");
     basicDataSource.setUsername("sa");
     basicDataSource.setPassword("sa");
     return basicDataSource;
   }
 
-  /**
-   * Factory to create a especific instance of Entity Manager.
-   */
+  /** Factory to create a specific instance of Entity Manager. */
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     var entityManager = new LocalContainerEntityManagerFactoryBean();
@@ -72,9 +71,7 @@ public class AppConfig {
     return entityManager;
   }
 
-  /**
-   * Properties for Jpa.
-   */
+  /** Properties for Jpa. */
   private static Properties jpaProperties() {
     var properties = new Properties();
     properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
@@ -82,9 +79,7 @@ public class AppConfig {
     return properties;
   }
 
-  /**
-   * Get transaction manager.
-   */
+  /** Get transaction manager. */
   @Bean
   public JpaTransactionManager transactionManager() {
     var transactionManager = new JpaTransactionManager();
@@ -144,7 +139,5 @@ public class AppConfig {
     persons.stream().map(Person::toString).forEach(LOGGER::info);
 
     context.close();
-
   }
-
 }

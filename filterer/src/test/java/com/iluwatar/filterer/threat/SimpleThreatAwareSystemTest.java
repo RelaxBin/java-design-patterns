@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,30 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.filterer.threat;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class SimpleThreatAwareSystemTest {
   @Test
   void shouldFilterByThreatType() {
-    //given
+    // given
     var rootkit = new SimpleThreat(ThreatType.ROOTKIT, 1, "Simple-Rootkit");
     var trojan = new SimpleThreat(ThreatType.TROJAN, 2, "Simple-Trojan");
     List<Threat> threats = List.of(rootkit, trojan);
 
     var threatAwareSystem = new SimpleThreatAwareSystem("System-1", threats);
 
-    //when
-    var rootkitThreatAwareSystem = threatAwareSystem.filtered()
-        .by(threat -> threat.type() == ThreatType.ROOTKIT);
+    // when
+    var rootkitThreatAwareSystem =
+        threatAwareSystem.filtered().by(threat -> threat.type() == ThreatType.ROOTKIT);
 
-    //then
+    // then
     assertEquals(rootkitThreatAwareSystem.threats().size(), 1);
     assertEquals(rootkitThreatAwareSystem.threats().get(0), rootkit);
   }

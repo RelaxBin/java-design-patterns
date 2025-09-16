@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.eda.framework;
 
 import java.util.HashMap;
@@ -42,17 +43,14 @@ public class EventDispatcher {
    * Links an {@link Event} to a specific {@link Handler}.
    *
    * @param eventType The {@link Event} to be registered
-   * @param handler   The {@link Handler} that will be handling the {@link Event}
+   * @param handler The {@link Handler} that will be handling the {@link Event}
    */
-  public <E extends Event> void registerHandler(
-      Class<E> eventType,
-      Handler<E> handler
-  ) {
+  public <E extends Event> void registerHandler(Class<E> eventType, Handler<E> handler) {
     handlers.put(eventType, handler);
   }
 
   /**
-   * Dispatches an {@link Event} depending on it's type.
+   * Dispatches an {@link Event} depending on its type.
    *
    * @param event The {@link Event} to be dispatched
    */
@@ -63,5 +61,4 @@ public class EventDispatcher {
       handler.onEvent(event);
     }
   }
-
 }

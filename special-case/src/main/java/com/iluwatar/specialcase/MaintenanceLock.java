@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.specialcase;
 
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/** Acquire lock on the DB for maintenance. */
 public class MaintenanceLock {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MaintenanceLock.class);
 
   private static MaintenanceLock instance;
-  private boolean lock = true;
+
+  @Getter private boolean lock = true;
 
   /**
    * Get the instance of MaintenanceLock.
@@ -45,12 +49,8 @@ public class MaintenanceLock {
     return instance;
   }
 
-  public boolean isLock() {
-    return lock;
-  }
-
   public void setLock(boolean lock) {
     this.lock = lock;
-    LOGGER.info("Maintenance lock is set to: ", lock);
+    LOGGER.info("Maintenance lock is set to: {}", lock);
   }
 }

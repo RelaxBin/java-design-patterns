@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.facade;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,11 +37,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * Date: 12/9/15 - 9:40 PM
- *
- * @author Jeroen Meulemeester
- */
+/** DwarvenGoldmineFacadeTest */
 class DwarvenGoldmineFacadeTest {
 
   private InMemoryAppender appender;
@@ -59,8 +56,8 @@ class DwarvenGoldmineFacadeTest {
    * Test a complete day cycle in the gold mine by executing all three different steps: {@link
    * DwarvenGoldmineFacade#startNewDay()}, {@link DwarvenGoldmineFacade#digOutGold()} and {@link
    * DwarvenGoldmineFacade#endDay()}.
-   * <p>
-   * See if the workers are doing what's expected from them on each step.
+   *
+   * <p>See if the workers are doing what's expected from them on each step.
    */
   @Test
   void testFullWorkDay() {
@@ -83,7 +80,7 @@ class DwarvenGoldmineFacadeTest {
     // Now do some actual work, start digging gold!
     goldMine.digOutGold();
 
-    // Since we gave the dig command, every worker should be doing it's job ...
+    // Since we gave the dig command, every worker should be doing its job ...
     assertTrue(appender.logContains("Dwarf gold digger digs for gold."));
     assertTrue(appender.logContains("Dwarf cart operator moves gold chunks out of the mine."));
     assertTrue(appender.logContains("Dwarven tunnel digger creates another promising tunnel."));
@@ -127,11 +124,7 @@ class DwarvenGoldmineFacadeTest {
     }
 
     public boolean logContains(String message) {
-      return log.stream()
-          .map(ILoggingEvent::getFormattedMessage)
-          .anyMatch(message::equals);
+      return log.stream().map(ILoggingEvent::getFormattedMessage).anyMatch(message::equals);
     }
   }
-
-
 }

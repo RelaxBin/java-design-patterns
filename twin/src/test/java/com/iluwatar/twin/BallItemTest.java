@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.twin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,22 +41,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * Date: 12/30/15 - 18:44 PM
- *
- * @author Jeroen Meulemeester
- */
-public class BallItemTest {
+/** BallItemTest */
+class BallItemTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -67,12 +64,14 @@ public class BallItemTest {
 
     final var inOrder = inOrder(ballThread);
 
-    IntStream.range(0, 10).forEach(i -> {
-      ballItem.click();
-      inOrder.verify(ballThread).suspendMe();
-      ballItem.click();
-      inOrder.verify(ballThread).resumeMe();
-    });
+    IntStream.range(0, 10)
+        .forEach(
+            i -> {
+              ballItem.click();
+              inOrder.verify(ballThread).suspendMe();
+              ballItem.click();
+              inOrder.verify(ballThread).resumeMe();
+            });
 
     inOrder.verifyNoMoreInteractions();
   }
@@ -104,10 +103,8 @@ public class BallItemTest {
     assertEquals(1, appender.getLogSize());
   }
 
-  /**
-   * Logging Appender Implementation
-   */
-  public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  /** Logging Appender Implementation */
+  static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {
@@ -128,5 +125,4 @@ public class BallItemTest {
       return log.size();
     }
   }
-
 }

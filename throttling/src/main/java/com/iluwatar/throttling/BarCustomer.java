@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.throttling;
 
 import java.security.InvalidParameterException;
-
 import lombok.Getter;
 
-/**
- * BarCustomer is a tenant with a name and a number of allowed calls per second.
- */
+/** BarCustomer is a tenant with a name and a number of allowed calls per second. */
+@Getter
 public class BarCustomer {
 
-  @Getter
   private final String name;
-  @Getter
   private final int allowedCallsPerSecond;
 
   /**

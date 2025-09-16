@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.servant;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-
 
 /**
  * Servant offers some functionality to a group of classes without defining that functionality in
@@ -40,17 +40,13 @@ public class App {
   private static final Servant jenkins = new Servant("Jenkins");
   private static final Servant travis = new Servant("Travis");
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
     scenario(jenkins, 1);
     scenario(travis, 0);
   }
 
-  /**
-   * Can add a List with enum Actions for variable scenarios.
-   */
+  /** Can add a List with enum Actions for variable scenarios. */
   public static void scenario(Servant servant, int compliment) {
     var k = new King();
     var q = new Queen();

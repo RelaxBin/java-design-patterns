@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.factorykit;
 
 import java.util.HashMap;
@@ -28,11 +29,11 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
- * Functional interface, an example of the factory-kit design pattern.
- * <br>Instance created locally gives an opportunity to strictly define
- * which objects types the instance of a factory will be able to create.
- * <br>Factory is a placeholder for {@link Builder}s
- * with {@link WeaponFactory#create(WeaponType)} method to initialize new objects.
+ * Functional interface, an example of the factory-kit design pattern. <br>
+ * Instance created locally gives an opportunity to strictly define which objects types the instance
+ * of a factory will be able to create. <br>
+ * Factory is a placeholder for {@link Builder}s with {@link WeaponFactory#create(WeaponType)}
+ * method to initialize new objects.
  */
 public interface WeaponFactory {
 

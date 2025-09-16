@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,46 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.iterator.list;
 
 import com.iluwatar.iterator.Iterator;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * TreasureChest, the collection class.
- */
+/** TreasureChest, the collection class. */
 public class TreasureChest {
 
   private final List<Item> items;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public TreasureChest() {
-    items = List.of(
-        new Item(ItemType.POTION, "Potion of courage"),
-        new Item(ItemType.RING, "Ring of shadows"),
-        new Item(ItemType.POTION, "Potion of wisdom"),
-        new Item(ItemType.POTION, "Potion of blood"),
-        new Item(ItemType.WEAPON, "Sword of silver +1"),
-        new Item(ItemType.POTION, "Potion of rust"),
-        new Item(ItemType.POTION, "Potion of healing"),
-        new Item(ItemType.RING, "Ring of armor"),
-        new Item(ItemType.WEAPON, "Steel halberd"),
-        new Item(ItemType.WEAPON, "Dagger of poison"));
+    items =
+        List.of(
+            new Item(ItemType.POTION, "Potion of courage"),
+            new Item(ItemType.RING, "Ring of shadows"),
+            new Item(ItemType.POTION, "Potion of wisdom"),
+            new Item(ItemType.POTION, "Potion of blood"),
+            new Item(ItemType.WEAPON, "Sword of silver +1"),
+            new Item(ItemType.POTION, "Potion of rust"),
+            new Item(ItemType.POTION, "Potion of healing"),
+            new Item(ItemType.RING, "Ring of armor"),
+            new Item(ItemType.WEAPON, "Steel halberd"),
+            new Item(ItemType.WEAPON, "Dagger of poison"));
   }
 
   public Iterator<Item> iterator(ItemType itemType) {
     return new TreasureChestItemIterator(this, itemType);
   }
 
-  /**
-   * Get all items.
-   */
+  /** Get all items. */
   public List<Item> getItems() {
     return new ArrayList<>(items);
   }
-
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.flux.dispatcher;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,17 +39,12 @@ import com.iluwatar.flux.action.ContentAction;
 import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.store.Store;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
-/**
- * Date: 12/12/15 - 8:22 PM
- *
- * @author Jeroen Meulemeester
- */
-public class DispatcherTest {
+/** DispatcherTest */
+class DispatcherTest {
 
   /**
    * Dispatcher is a singleton with no way to reset it's internal state back to the beginning.
@@ -56,7 +52,7 @@ public class DispatcherTest {
    * influence on each other.
    */
   @BeforeEach
-  public void setUp() throws Exception {
+  void setUp() throws Exception {
     final var constructor = Dispatcher.class.getDeclaredConstructor();
     constructor.setAccessible(true);
 
@@ -86,28 +82,37 @@ public class DispatcherTest {
     verifyNoMoreInteractions(store);
 
     final var actions = actionCaptor.getAllValues();
-    final var menuActions = actions.stream()
-        .filter(a -> a.getType().equals(ActionType.MENU_ITEM_SELECTED))
-        .map(a -> (MenuAction) a)
-        .collect(Collectors.toList());
+    final var menuActions =
+        actions.stream()
+            .filter(a -> a.getType().equals(ActionType.MENU_ITEM_SELECTED))
+            .map(a -> (MenuAction) a)
+            .toList();
 
-    final var contentActions = actions.stream()
-        .filter(a -> a.getType().equals(ActionType.CONTENT_CHANGED))
-        .map(a -> (ContentAction) a)
-        .collect(Collectors.toList());
+    final var contentActions =
+        actions.stream()
+            .filter(a -> a.getType().equals(ActionType.CONTENT_CHANGED))
+            .map(a -> (ContentAction) a)
+            .toList();
 
     assertEquals(2, menuActions.size());
-    assertEquals(1, menuActions.stream().map(MenuAction::getMenuItem).filter(MenuItem.HOME::equals)
-        .count());
-    assertEquals(1, menuActions.stream().map(MenuAction::getMenuItem)
-        .filter(MenuItem.COMPANY::equals).count());
+    assertEquals(
+        1, menuActions.stream().map(MenuAction::getMenuItem).filter(MenuItem.HOME::equals).count());
+    assertEquals(
+        1,
+        menuActions.stream().map(MenuAction::getMenuItem).filter(MenuItem.COMPANY::equals).count());
 
     assertEquals(2, contentActions.size());
-    assertEquals(1, contentActions.stream().map(ContentAction::getContent)
-        .filter(Content.PRODUCTS::equals).count());
-    assertEquals(1, contentActions.stream().map(ContentAction::getContent)
-        .filter(Content.COMPANY::equals).count());
-
+    assertEquals(
+        1,
+        contentActions.stream()
+            .map(ContentAction::getContent)
+            .filter(Content.PRODUCTS::equals)
+            .count());
+    assertEquals(
+        1,
+        contentActions.stream()
+            .map(ContentAction::getContent)
+            .filter(Content.COMPANY::equals)
+            .count());
   }
-
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.event.aggregator;
 
-/**
- * KingsHand observes events from multiple sources and delivers them to listeners.
- */
+/** KingsHand observes events from multiple sources and delivers them to listeners. */
 public class KingsHand extends EventEmitter implements EventObserver {
 
-  public KingsHand() {
-  }
+  public KingsHand() {}
 
   public KingsHand(EventObserver obs, Event e) {
     super(obs, e);
@@ -42,5 +40,8 @@ public class KingsHand extends EventEmitter implements EventObserver {
 
   @Override
   public void timePasses(Weekday day) {
+    // This method is intentionally left empty because KingsHand does not handle time-based events
+    // directly.
+    // It serves as a placeholder to fulfill the EventObserver interface contract.
   }
 }

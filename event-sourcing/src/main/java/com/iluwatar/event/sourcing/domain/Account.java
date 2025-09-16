@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.event.sourcing.domain;
 
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
@@ -67,9 +68,13 @@ public class Account {
   @Override
   public String toString() {
     return "Account{"
-        + "accountNo=" + accountNo
-        + ", owner='" + owner + '\''
-        + ", money=" + money
+        + "accountNo="
+        + accountNo
+        + ", owner='"
+        + owner
+        + '\''
+        + ", money="
+        + money
         + '}';
   }
 
@@ -110,11 +115,10 @@ public class Account {
     handleDeposit(moneyDepositEvent.getMoney(), moneyDepositEvent.isRealTime());
   }
 
-
   /**
    * Handles the AccountCreateEvent.
    *
-   * @param accountCreateEvent the account create event
+   * @param accountCreateEvent the account created event
    */
   public void handleEvent(AccountCreateEvent accountCreateEvent) {
     AccountAggregate.putAccount(this);
@@ -140,6 +144,4 @@ public class Account {
   public void handleTransferToEvent(MoneyTransferEvent moneyTransferEvent) {
     handleDeposit(moneyTransferEvent.getMoney(), moneyTransferEvent.isRealTime());
   }
-
-
 }

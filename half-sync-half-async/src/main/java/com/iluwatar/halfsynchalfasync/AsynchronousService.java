@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.halfsynchalfasync;
 
 import java.util.concurrent.BlockingQueue;
@@ -42,7 +43,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AsynchronousService {
   /*
    * This represents the queuing layer as well as synchronous layer of the pattern. The thread pool
-   * contains worker threads which execute the tasks in blocking/synchronous manner. Long running
+   * contains worker threads which execute the tasks in blocking/synchronous manner. Long-running
    * tasks should be performed in the background which does not affect the performance of main
    * thread.
    */
@@ -56,7 +57,6 @@ public class AsynchronousService {
   public AsynchronousService(BlockingQueue<Runnable> workQueue) {
     service = new ThreadPoolExecutor(10, 10, 10, TimeUnit.SECONDS, workQueue);
   }
-
 
   /**
    * A non-blocking method which performs the task provided in background and returns immediately.
@@ -78,30 +78,29 @@ public class AsynchronousService {
       return;
     }
 
-    service.submit(new FutureTask<T>(task) {
-      @Override
-      protected void done() {
-        super.done();
-        try {
-          /*
-           * called in context of background thread. There is other variant possible where result is
-           * posted back and sits in the queue of caller thread which then picks it up for
-           * processing. An example of such a system is Android OS, where the UI elements can only
-           * be updated using UI thread. So result must be posted back in UI thread.
-           */
-          task.onPostCall(get());
-        } catch (InterruptedException e) {
-          // should not occur
-        } catch (ExecutionException e) {
-          task.onError(e.getCause());
-        }
-      }
-    });
+    service.submit(
+        new FutureTask<>(task) {
+          @Override
+          protected void done() {
+            super.done();
+            try {
+              /*
+               * called in context of background thread. There is other variant possible where result is
+               * posted back and sits in the queue of caller thread which then picks it up for
+               * processing. An example of such a system is Android OS, where the UI elements can only
+               * be updated using UI thread. So result must be posted back in UI thread.
+               */
+              task.onPostCall(get());
+            } catch (InterruptedException e) {
+              // should not occur
+            } catch (ExecutionException e) {
+              task.onError(e.getCause());
+            }
+          }
+        });
   }
 
-  /**
-   * Stops the pool of workers. This is a blocking call to wait for all tasks to be completed.
-   */
+  /** Stops the pool of workers. This is a blocking call to wait for all tasks to be completed. */
   public void close() {
     service.shutdown();
     try {

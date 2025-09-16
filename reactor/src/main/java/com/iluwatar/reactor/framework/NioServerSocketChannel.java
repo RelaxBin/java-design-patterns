@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.reactor.framework;
 
 import java.io.IOException;
@@ -42,13 +43,13 @@ public class NioServerSocketChannel extends AbstractNioChannel {
   private final int port;
 
   /**
-   * Creates a {@link ServerSocketChannel} which will bind at provided port and use
-   * <code>handler</code> to handle incoming events on this channel.
+   * Creates a {@link ServerSocketChannel} which will bind at provided port and use <code>handler
+   * </code> to handle incoming events on this channel.
    *
    * <p>Note the constructor does not bind the socket, {@link #bind()} method should be called for
    * binding the socket.
    *
-   * @param port    the port on which channel will be bound to accept incoming connection requests.
+   * @param port the port on which channel will be bound to accept incoming connection requests.
    * @param handler the handler that will handle incoming requests on this channel.
    * @throws IOException if any I/O error occurs.
    */
@@ -56,7 +57,6 @@ public class NioServerSocketChannel extends AbstractNioChannel {
     super(handler, ServerSocketChannel.open());
     this.port = port;
   }
-
 
   @Override
   public int getInterestedOps() {

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.doubledispatch;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,11 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/10/15 - 11:31 PM
- *
- * @author Jeroen Meulemeester
- */
+/** SpaceStationMirTest */
 class SpaceStationMirTest extends CollisionTest<SpaceStationMir> {
 
   @Override
@@ -40,9 +37,7 @@ class SpaceStationMirTest extends CollisionTest<SpaceStationMir> {
     return new SpaceStationMir(1, 2, 3, 4);
   }
 
-  /**
-   * Test the constructor parameters
-   */
+  /** Test the constructor parameters */
   @Test
   void testConstructor() {
     final var mir = new SpaceStationMir(1, 2, 3, 4);
@@ -55,52 +50,27 @@ class SpaceStationMirTest extends CollisionTest<SpaceStationMir> {
     assertEquals("SpaceStationMir at [1,2,3,4] damaged=false onFire=false", mir.toString());
   }
 
-  /**
-   * Test what happens we collide with an asteroid
-   */
+  /** Test what happens we collide with an asteroid */
   @Test
   void testCollideFlamingAsteroid() {
-    testCollision(
-        new FlamingAsteroid(1, 1, 3, 4),
-        false, true,
-        false, false
-    );
+    testCollision(new FlamingAsteroid(1, 1, 3, 4), false, true, false, false);
   }
 
-  /**
-   * Test what happens we collide with an meteoroid
-   */
+  /** Test what happens we collide with an meteoroid */
   @Test
   void testCollideMeteoroid() {
-    testCollision(
-        new Meteoroid(1, 1, 3, 4),
-        false, false,
-        false, false
-    );
+    testCollision(new Meteoroid(1, 1, 3, 4), false, false, false, false);
   }
 
-  /**
-   * Test what happens we collide with ISS
-   */
+  /** Test what happens we collide with ISS */
   @Test
   void testCollideSpaceStationIss() {
-    testCollision(
-        new SpaceStationIss(1, 1, 3, 4),
-        true, false,
-        false, false
-    );
+    testCollision(new SpaceStationIss(1, 1, 3, 4), true, false, false, false);
   }
 
-  /**
-   * Test what happens we collide with MIR
-   */
+  /** Test what happens we collide with MIR */
   @Test
   void testCollideSpaceStationMir() {
-    testCollision(
-        new SpaceStationMir(1, 1, 3, 4),
-        true, false,
-        false, false
-    );
+    testCollision(new SpaceStationMir(1, 1, 3, 4), true, false, false, false);
   }
-
 }

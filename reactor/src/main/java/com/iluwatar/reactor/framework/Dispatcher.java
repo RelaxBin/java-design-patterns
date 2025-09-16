@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.reactor.framework;
 
 import java.nio.channels.SelectionKey;
@@ -29,8 +30,9 @@ import java.nio.channels.SelectionKey;
  * Represents the event dispatching strategy. When {@link NioReactor} senses any event on the
  * registered {@link AbstractNioChannel}s then it de-multiplexes the event type, read or write or
  * connect, and then calls the {@link Dispatcher} to dispatch the read events. This decouples the
- * I/O processing from application specific processing. <br> Dispatcher should call the {@link
- * ChannelHandler} associated with the channel on which event occurred.
+ * I/O processing from application specific processing. <br>
+ * Dispatcher should call the {@link ChannelHandler} associated with the channel on which event
+ * occurred.
  *
  * <p>The application can customize the way in which event is dispatched such as using the reactor
  * thread to dispatch event to channels or use a worker pool to do the non I/O processing.
@@ -46,9 +48,9 @@ public interface Dispatcher {
    *
    * <p>The type of <code>readObject</code> depends on the channel on which data was received.
    *
-   * @param channel    on which read event occurred
+   * @param channel on which read event occurred
    * @param readObject object read by channel
-   * @param key        on which event occurred
+   * @param key on which event occurred
    */
   void onChannelReadEvent(AbstractNioChannel channel, Object readObject, SelectionKey key);
 

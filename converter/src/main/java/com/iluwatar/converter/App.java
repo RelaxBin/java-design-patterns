@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.converter;
 
 import java.util.List;
@@ -47,17 +48,16 @@ public class App {
     User user = userConverter.convertFromDto(dtoUser);
     LOGGER.info("Entity converted from DTO: {}", user);
 
-    var users = List.of(
-        new User("Camile", "Tough", false, "124sad"),
-        new User("Marti", "Luther", true, "42309fd"),
-        new User("Kate", "Smith", true, "if0243")
-    );
+    var users =
+        List.of(
+            new User("Camile", "Tough", false, "124sad"),
+            new User("Marti", "Luther", true, "42309fd"),
+            new User("Kate", "Smith", true, "if0243"));
     LOGGER.info("Domain entities:");
     users.stream().map(User::toString).forEach(LOGGER::info);
 
     LOGGER.info("DTO entities converted from domain:");
     List<UserDto> dtoEntities = userConverter.createFromEntities(users);
     dtoEntities.stream().map(UserDto::toString).forEach(LOGGER::info);
-
   }
 }

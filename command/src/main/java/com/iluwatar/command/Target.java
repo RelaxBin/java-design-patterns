@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,46 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.command;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Base class for spell targets.
- */
-@Setter
+/** Base class for spell targets. */
 @Slf4j
 @Getter
+@Setter
 public abstract class Target {
 
   private Size size;
 
   private Visibility visibility;
 
-  /**
-   * Print status.
-   */
+  /** Print status. */
   public void printStatus() {
     LOGGER.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
   }
 
-  /**
-   * Changes the size of the target.
-   */
+  /** Changes the size of the target. */
   public void changeSize() {
     var oldSize = getSize() == Size.NORMAL ? Size.SMALL : Size.NORMAL;
     setSize(oldSize);
   }
 
-  /**
-   * Changes the visibility of the target.
-   */
+  /** Changes the visibility of the target. */
   public void changeVisibility() {
-    var visible = getVisibility() == Visibility.INVISIBLE
-            ? Visibility.VISIBLE : Visibility.INVISIBLE;
+    var visible =
+        getVisibility() == Visibility.INVISIBLE ? Visibility.VISIBLE : Visibility.INVISIBLE;
     setVisibility(visible);
   }
 }

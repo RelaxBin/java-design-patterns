@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,24 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.compositeentity;
 
-/**
- * A specific CoarseGrainedObject to implement a console.
- */
-
+/** A specific CoarseGrainedObject to implement a console. */
 public class ConsoleCoarseGrainedObject extends CoarseGrainedObject<String> {
 
   @Override
   public String[] getData() {
-    return new String[]{
-        dependentObjects[0].getData(), dependentObjects[1].getData()
-    };
+    return new String[] {dependentObjects[0].getData(), dependentObjects[1].getData()};
   }
 
   public void init() {
-    dependentObjects = new DependentObject[]{
-        new MessageDependentObject(), new SignalDependentObject()};
+    dependentObjects =
+        new DependentObject[] {new MessageDependentObject(), new SignalDependentObject()};
   }
 }

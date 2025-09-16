@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.saga.orchestration;
 
 import static com.iluwatar.saga.orchestration.Saga.Result;
@@ -29,7 +30,6 @@ import static com.iluwatar.saga.orchestration.Saga.Result.FINISHED;
 import static com.iluwatar.saga.orchestration.Saga.Result.ROLLBACK;
 
 import lombok.extern.slf4j.Slf4j;
-
 
 /**
  * The orchestrator that manages all the transactions and directs the participant services to
@@ -41,12 +41,11 @@ public class SagaOrchestrator {
   private final ServiceDiscoveryService sd;
   private final CurrentState state;
 
-
   /**
    * Create a new service to orchetrate sagas.
    *
    * @param saga saga to process
-   * @param sd   service discovery @see {@link ServiceDiscoveryService}
+   * @param sd service discovery @see {@link ServiceDiscoveryService}
    */
   public SagaOrchestrator(Saga saga, ServiceDiscoveryService sd) {
     this.saga = saga;
@@ -58,7 +57,7 @@ public class SagaOrchestrator {
    * pipeline to execute saga process/story.
    *
    * @param value incoming value
-   * @param <K>   type for incoming value
+   * @param <K> type for incoming value
    * @return result @see {@link Result}
    */
   @SuppressWarnings("unchecked")
@@ -100,14 +99,11 @@ public class SagaOrchestrator {
         }
       }
 
-
       if (!saga.isPresent(next)) {
         return state.isForward() ? FINISHED : result == CRASHED ? CRASHED : ROLLBACK;
       }
     }
-
   }
-
 
   private static class CurrentState {
     int currentNumber;
@@ -122,7 +118,6 @@ public class SagaOrchestrator {
       this.currentNumber = 0;
       this.isForward = true;
     }
-
 
     boolean isForward() {
       return isForward;
@@ -144,5 +139,4 @@ public class SagaOrchestrator {
       return currentNumber;
     }
   }
-
 }

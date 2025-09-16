@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.unitofwork;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,17 +36,14 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-/**
- * tests {@link ArmsDealer}
- */
-
+/** tests {@link ArmsDealer} */
 class ArmsDealerTest {
   private final Weapon weapon1 = new Weapon(1, "battle ram");
   private final Weapon weapon2 = new Weapon(1, "wooden lance");
 
   private final Map<String, List<Weapon>> context = new HashMap<>();
   private final WeaponDatabase weaponDatabase = mock(WeaponDatabase.class);
-  private final ArmsDealer armsDealer = new ArmsDealer(context, weaponDatabase);;
+  private final ArmsDealer armsDealer = new ArmsDealer(context, weaponDatabase);
 
   @Test
   void shouldSaveNewStudentWithoutWritingToDb() {

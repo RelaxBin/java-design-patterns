@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.pipeline;
 
 import java.util.function.IntPredicate;
@@ -39,7 +40,8 @@ class RemoveDigitsHandler implements Handler<String, String> {
   public String process(String input) {
     var inputWithoutDigits = new StringBuilder();
     var isDigit = (IntPredicate) Character::isDigit;
-    input.chars()
+    input
+        .chars()
         .filter(isDigit.negate())
         .mapToObj(x -> (char) x)
         .forEachOrdered(inputWithoutDigits::append);
@@ -48,9 +50,7 @@ class RemoveDigitsHandler implements Handler<String, String> {
     LOGGER.info(
         String.format(
             "Current handler: %s, input is %s of type %s, output is %s, of type %s",
-            RemoveDigitsHandler.class, input, String.class, inputWithoutDigitsStr, String.class
-        )
-    );
+            RemoveDigitsHandler.class, input, String.class, inputWithoutDigitsStr, String.class));
 
     return inputWithoutDigitsStr;
   }
